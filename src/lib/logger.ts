@@ -1,224 +1,148 @@
 /**
- * Frontend Logger Utility
- * Centralized management for all frontend log output for easy debugging and tracing
+ * Structured logging system for OpenClaw Desktop.
+ *
+ * Architecture: Ring-buffer store + typed log entries + subscriber pattern.
+ * Each log entry is a structured record rather than a formatted string.
  */
 
-type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+// ─── Types ──────────────────────────────────────────────────────
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
-// Log entry
 export interface LogEntry {
   id: number;
-  timestamp: Date;
+  ts: Date;
   level: LogLevel;
+  scope: string;
+  msg: string;
+  data: unknown[];
+  // Backward-compat aliases used by Logs component
+  timestamp: Date;
   module: string;
   message: string;
   args: unknown[];
 }
 
-// Log level weights
-const LOG_LEVELS: Record<LogLevel, number> = {
-  debug: 0,
-  info: 1,
-  warn: 2,
-  error: 3,
-};
+type Subscriber = (entry: LogEntry) => void;
 
-// Log storage
-class LogStore {
-  private logs: LogEntry[] = [];
-  private maxLogs = 500;
-  private idCounter = 0;
-  private listeners: Set<() => void> = new Set();
+const LEVEL_WEIGHT: Record<LogLevel, number> = { debug: 0, info: 1, warn: 2, error: 3 };
 
-  add(entry: Omit<LogEntry, 'id'>) {
-    const newEntry: LogEntry = {
-      ...entry,
-      id: ++this.idCounter,
-    };
-    this.logs.push(newEntry);
+// ─── Ring Buffer Store ──────────────────────────────────────────
+class RingBuffer {
+  private buf: LogEntry[] = [];
+  private cap: number;
+  private seq = 0;
+  private subs = new Set<Subscriber>();
 
-    // Limit log count
-    if (this.logs.length > this.maxLogs) {
-      this.logs = this.logs.slice(-this.maxLogs);
-    }
-
-    // Notify listeners
-    this.listeners.forEach(listener => listener());
+  constructor(capacity = 500) {
+    this.cap = capacity;
   }
 
-  getAll(): LogEntry[] {
-    return [...this.logs];
+  push(entry: Omit<LogEntry, 'id' | 'timestamp' | 'module' | 'message' | 'args'>): LogEntry {
+    const record: LogEntry = { ...entry, id: ++this.seq, timestamp: entry.ts, module: entry.scope, message: entry.msg, args: entry.data };
+    this.buf.push(record);
+    if (this.buf.length > this.cap) this.buf.shift();
+    this.subs.forEach(fn => fn(record));
+    return record;
   }
 
-  clear() {
-    this.logs = [];
-    this.listeners.forEach(listener => listener());
-  }
-
-  subscribe(listener: () => void): () => void {
-    this.listeners.add(listener);
-    return () => this.listeners.delete(listener);
-  }
-}
-
-// Global log store instance
-export const logStore = new LogStore();
-
-// Current log level (configurable via localStorage)
-const getCurrentLevel = (): LogLevel => {
-  if (typeof window !== 'undefined') {
-    const level = localStorage.getItem('LOG_LEVEL') as LogLevel;
-    if (level && LOG_LEVELS[level] !== undefined) {
-      return level;
-    }
-  }
-  // Default to debug level (show all logs during development)
-  return 'debug';
-};
-
-// Log styles
-const STYLES: Record<LogLevel, string> = {
-  debug: 'color: #888; font-weight: normal',
-  info: 'color: #4ade80; font-weight: normal',
-  warn: 'color: #facc15; font-weight: bold',
-  error: 'color: #f87171; font-weight: bold',
-};
-
-// Module colors (assign different colors to different modules)
-const MODULE_COLORS: Record<string, string> = {
-  App: '#a78bfa',
-  Service: '#60a5fa',
-  Config: '#34d399',
-  AI: '#f472b6',
-  Channel: '#fb923c',
-  Setup: '#22d3ee',
-  Dashboard: '#a3e635',
-  Testing: '#e879f9',
-  API: '#fbbf24',
-};
-
-const getModuleColor = (module: string): string => {
-  return MODULE_COLORS[module] || '#94a3b8';
-};
-
-class Logger {
-  private module: string;
-
-  constructor(module: string) {
-    this.module = module;
-  }
-
-  private shouldLog(level: LogLevel): boolean {
-    return LOG_LEVELS[level] >= LOG_LEVELS[getCurrentLevel()];
-  }
-
-  private formatMessage(level: LogLevel, message: string, ...args: unknown[]): void {
-    if (!this.shouldLog(level)) return;
-
+  entries(): LogEntry[] { return [...this.buf]; }
+  flush(): void {
+    this.buf = [];
     const now = new Date();
-    const timestamp = now.toLocaleTimeString('zh-CN', { 
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }) + '.' + String(now.getMilliseconds()).padStart(3, '0');
-    
-    const moduleColor = getModuleColor(this.module);
-    const prefix = `%c${timestamp} %c[${this.module}]%c`;
-    
-    const consoleMethod = level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log';
-    
-    console[consoleMethod](
-      prefix + ` %c${message}`,
-      'color: #666',
-      `color: ${moduleColor}; font-weight: bold`,
-      '',
-      STYLES[level],
-      ...args
-    );
-
-    // Store log
-    logStore.add({
-      timestamp: now,
-      level,
-      module: this.module,
-      message,
-      args,
-    });
+    this.subs.forEach(fn => fn({ id: 0, ts: now, level: 'info', scope: 'system', msg: 'Logs cleared', data: [], timestamp: now, module: 'system', message: 'Logs cleared', args: [] }));
   }
-
-  debug(message: string, ...args: unknown[]): void {
-    this.formatMessage('debug', message, ...args);
-  }
-
-  info(message: string, ...args: unknown[]): void {
-    this.formatMessage('info', message, ...args);
-  }
-
-  warn(message: string, ...args: unknown[]): void {
-    this.formatMessage('warn', message, ...args);
-  }
-
-  error(message: string, ...args: unknown[]): void {
-    this.formatMessage('error', message, ...args);
-  }
-
-  // Log API call
-  apiCall(method: string, ...args: unknown[]): void {
-    this.debug(`📡 API Call: ${method}`, ...args);
-  }
-
-  // Log API response
-  apiResponse(method: string, result: unknown): void {
-    this.debug(`✅ API Response: ${method}`, result);
-  }
-
-  // Log API error
-  apiError(method: string, error: unknown): void {
-    this.error(`❌ API Error: ${method}`, error);
-  }
-
-  // Log user action
-  action(action: string, ...args: unknown[]): void {
-    this.info(`👆 User Action: ${action}`, ...args);
-  }
-
-  // Log state change
-  state(description: string, state: unknown): void {
-    this.debug(`📊 State Change: ${description}`, state);
-  }
+  subscribe(fn: Subscriber): () => void { this.subs.add(fn); return () => this.subs.delete(fn); }
 }
 
-// Factory function to create module logger
-export function createLogger(module: string): Logger {
-  return new Logger(module);
+export const store = new RingBuffer();
+
+// ─── Threshold ──────────────────────────────────────────────────
+function threshold(): LogLevel {
+  try {
+    const saved = localStorage.getItem('LOG_LEVEL') as LogLevel;
+    if (saved && LEVEL_WEIGHT[saved] !== undefined) return saved;
+  } catch { /* SSR-safe */ }
+  return 'debug';
 }
 
-// Global function to set log level
-export function setLogLevel(level: LogLevel): void {
-  localStorage.setItem('LOG_LEVEL', level);
-  console.log(`%cLog level set to: ${level}`, 'color: #4ade80; font-weight: bold');
+// ─── Console Formatting ─────────────────────────────────────────
+const LEVEL_STYLE: Record<LogLevel, string> = {
+  debug: 'color:#999',
+  info:  'color:#10b981;font-weight:600',
+  warn:  'color:#f59e0b;font-weight:600',
+  error: 'color:#ef4444;font-weight:600',
+};
+
+function stamp(): string {
+  const d = new Date();
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}.${String(d.getMilliseconds()).padStart(3, '0')}`;
 }
 
-// Export pre-created common loggers
-export const appLogger = createLogger('App');
-export const serviceLogger = createLogger('Service');
-export const configLogger = createLogger('Config');
-export const aiLogger = createLogger('AI');
-export const channelLogger = createLogger('Channel');
-export const setupLogger = createLogger('Setup');
-export const dashboardLogger = createLogger('Dashboard');
-export const testingLogger = createLogger('Testing');
-export const apiLogger = createLogger('API');
+function emit(level: LogLevel, scope: string, msg: string, data: unknown[]): void {
+  if (LEVEL_WEIGHT[level] < LEVEL_WEIGHT[threshold()]) return;
 
-// Expose log control functions in console
+  const ts = new Date();
+  const tag = `%c${stamp()} %c[${scope}] %c${msg}`;
+  const method = level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log';
+  console[method](tag, 'color:#999', 'color:#7c3aed;font-weight:600', LEVEL_STYLE[level], ...data);
+
+  store.push({ ts, level, scope, msg, data });
+}
+
+// ─── Logger Factory ─────────────────────────────────────────────
+export interface Logger {
+  debug(msg: string, ...data: unknown[]): void;
+  info(msg: string, ...data: unknown[]): void;
+  warn(msg: string, ...data: unknown[]): void;
+  error(msg: string, ...data: unknown[]): void;
+  /** Log a user action */
+  action(action: string, ...data: unknown[]): void;
+  /** Log a state transition */
+  state(description: string, state: unknown): void;
+  /** Log an API call */
+  apiCall(method: string, ...data: unknown[]): void;
+  /** Log an API response */
+  apiResponse(method: string, result: unknown): void;
+  /** Log an API error */
+  apiError(method: string, error: unknown): void;
+}
+
+export function createLogger(scope: string): Logger {
+  return {
+    debug:       (msg, ...data) => emit('debug', scope, msg, data),
+    info:        (msg, ...data) => emit('info',  scope, msg, data),
+    warn:        (msg, ...data) => emit('warn',  scope, msg, data),
+    error:       (msg, ...data) => emit('error', scope, msg, data),
+    action:      (action, ...data) => emit('info', scope, `⚡ ${action}`, data),
+    state:       (desc, state) => emit('debug', scope, `◆ ${desc}`, [state]),
+    apiCall:     (method, ...data) => emit('debug', scope, `→ ${method}`, data),
+    apiResponse: (method, result) => emit('debug', scope, `← ${method}`, [result]),
+    apiError:    (method, error) => emit('error', scope, `✕ ${method}`, [error]),
+  };
+}
+
+// ─── Convenience loggers ────────────────────────────────────────
+export const appLogger       = createLogger('app');
+export const serviceLogger   = createLogger('service');
+export const configLogger    = createLogger('config');
+export const aiLogger        = createLogger('ai');
+export const channelLogger   = createLogger('channel');
+export const setupLogger     = createLogger('setup');
+export const dashboardLogger = createLogger('dashboard');
+export const testingLogger   = createLogger('testing');
+export const apiLogger       = createLogger('api');
+
+// Expose helpers to the console in dev
 if (typeof window !== 'undefined') {
-  (window as unknown as Record<string, unknown>).setLogLevel = setLogLevel;
-  (window as unknown as Record<string, unknown>).logStore = logStore;
-  console.log(
-    '%c🦞 OpenClaw Desktop logging enabled\n' +
-    '%cUse setLogLevel("debug"|"info"|"warn"|"error") to set log level',
-    'color: #a78bfa; font-weight: bold; font-size: 14px',
-    'color: #888; font-size: 12px'
-  );
+  const w = window as unknown as Record<string, unknown>;
+  w.setLogLevel = (level: LogLevel) => { localStorage.setItem('LOG_LEVEL', level); console.log(`Log level → ${level}`); };
+  w.logStore = store;
 }
+
+// Re-export for backward compat
+export const logStore = {
+  getAll: () => store.entries(),
+  clear:  () => store.flush(),
+  subscribe: (fn: () => void) => store.subscribe(() => fn()),
+  add: () => { /* noop — store.push used internally */ },
+};
