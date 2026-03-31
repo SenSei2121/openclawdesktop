@@ -216,7 +216,7 @@ if (typeof window !== 'undefined') {
   (window as unknown as Record<string, unknown>).setLogLevel = setLogLevel;
   (window as unknown as Record<string, unknown>).logStore = logStore;
   console.log(
-    '%c🦞 OpenClaw Manager logging enabled\n' +
+    '%c🦞 OpenClaw Desktop logging enabled\n' +
     '%cUse setLogLevel("debug"|"info"|"warn"|"error") to set log level',
     'color: #a78bfa; font-weight: bold; font-size: 14px',
     'color: #888; font-size: 12px'

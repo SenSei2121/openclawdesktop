@@ -13,7 +13,7 @@ import { logStore, LogEntry } from '../../lib/logger';
 type FilterLevel = 'all' | 'debug' | 'info' | 'warn' | 'error';
 
 const LEVEL_COLORS: Record<string, string> = {
-  debug: 'text-gray-400',
+  debug: 'text-gray-500',
   info: 'text-green-400',
   warn: 'text-yellow-400',
   error: 'text-red-400',
@@ -94,7 +94,7 @@ export function Logs() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `openclaw-manager-logs-${new Date().toISOString().slice(0, 10)}.txt`;
+    a.download = `openclaw-desktop-logs-${new Date().toISOString().slice(0, 10)}.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -134,7 +134,7 @@ export function Logs() {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value as FilterLevel)}
-            className="bg-dark-700 border border-dark-500 rounded-lg px-3 py-1.5 text-sm text-gray-300"
+            className="bg-dark-700 border border-dark-500 rounded-lg px-3 py-1.5 text-sm text-gray-600"
           >
             <option value="all">All Levels</option>
             <option value="debug">Debug</option>
@@ -148,7 +148,7 @@ export function Logs() {
         <select
           value={moduleFilter}
           onChange={(e) => setModuleFilter(e.target.value)}
-          className="bg-dark-700 border border-dark-500 rounded-lg px-3 py-1.5 text-sm text-gray-300"
+          className="bg-dark-700 border border-dark-500 rounded-lg px-3 py-1.5 text-sm text-gray-600"
         >
           <option value="all">All Modules</option>
           {modules.map(module => (
@@ -167,7 +167,7 @@ export function Logs() {
 
         {/* Action buttons */}
         <div className="flex items-center gap-2">
-          <label className="flex items-center gap-1 text-xs text-gray-400">
+          <label className="flex items-center gap-1 text-xs text-gray-500">
             <input
               type="checkbox"
               checked={autoScroll}
@@ -178,21 +178,21 @@ export function Logs() {
           </label>
           <button
             onClick={handleExport}
-            className="icon-button text-gray-400 hover:text-white"
+            className="icon-button text-gray-500 hover:text-gray-900"
             title="Export logs"
           >
             <Download size={16} />
           </button>
           <button
             onClick={() => setLogs(logStore.getAll())}
-            className="icon-button text-gray-400 hover:text-white"
+            className="icon-button text-gray-500 hover:text-gray-900"
             title="Refresh"
           >
             <RefreshCw size={16} />
           </button>
           <button
             onClick={handleClear}
-            className="icon-button text-gray-400 hover:text-red-400"
+            className="icon-button text-gray-500 hover:text-red-400"
             title="Clear logs"
           >
             <Trash2 size={16} />
@@ -205,7 +205,7 @@ export function Logs() {
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-2 bg-dark-700 border-b border-dark-600">
           <Terminal size={14} className="text-gray-500" />
-          <span className="text-xs text-gray-400 font-medium">Application Logs</span>
+          <span className="text-xs text-gray-500 font-medium">Application Logs</span>
         </div>
 
         {/* Log content */}
@@ -241,11 +241,11 @@ export function Logs() {
                     </span>
                     <span className={clsx(
                       'flex-shrink-0',
-                      MODULE_COLORS[log.module] || 'text-gray-400'
+                      MODULE_COLORS[log.module] || 'text-gray-500'
                     )}>
                       [{log.module}]
                     </span>
-                    <span className="text-gray-300 break-all">
+                    <span className="text-gray-600 break-all">
                       {log.message}
                     </span>
                   </div>

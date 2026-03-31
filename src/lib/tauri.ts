@@ -263,9 +263,6 @@ export const api = {
 
   // Skills
   getSkills: () => invokeWithLog<Skill[]>('get_skills'),
-  checkClawhubInstalled: () => invokeWithLog<boolean>('check_clawhub_installed'),
-  installClawhub: () => invokeWithLog<string>('install_clawhub'),
-  uninstallClawhub: () => invokeWithLog<string>('uninstall_clawhub'),
   installSkill: (name: string) => invokeWithLog<string>('install_skill', { skillName: name }),
   uninstallSkill: (id: string) => invokeWithLog<string>('uninstall_skill', { skillId: id }),
 

@@ -44,12 +44,12 @@ export function Sidebar({ currentPage, onNavigate, serviceStatus }: SidebarProps
       {/* Logo area (macOS titlebar drag) */}
       <div className="h-14 flex items-center px-6 titlebar-drag border-b border-dark-600">
         <div className="flex items-center gap-3 titlebar-no-drag">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-claw-400 to-claw-600 flex items-center justify-center">
-            <span className="text-lg">🦞</span>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden">
+            <img src="/logo.png" alt="OpenClaw" className="w-8 h-8 object-contain" />
           </div>
           <div>
-            <h1 className="text-sm font-semibold text-white">OpenClaw</h1>
-            <p className="text-xs text-gray-500">Manager</p>
+            <h1 className="text-sm font-semibold text-gray-800">OpenClaw</h1>
+            <p className="text-xs text-gray-500">Desktop</p>
           </div>
         </div>
       </div>
@@ -68,8 +68,8 @@ export function Sidebar({ currentPage, onNavigate, serviceStatus }: SidebarProps
                   className={clsx(
                     'w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all relative',
                     isActive
-                      ? 'text-white bg-dark-600'
-                      : 'text-gray-400 hover:text-white hover:bg-dark-700'
+                      ? 'text-gray-800 bg-white shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-dark-700'
                   )}
                 >
                   {isActive && (
@@ -93,7 +93,7 @@ export function Sidebar({ currentPage, onNavigate, serviceStatus }: SidebarProps
         <div className="px-4 py-3 bg-dark-700 rounded-lg">
           <div className="flex items-center gap-2 mb-2">
             <div className={clsx('status-dot', isRunning ? 'running' : 'stopped')} />
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-gray-600">
               {isRunning ? 'Service Running' : 'Service Stopped'}
             </span>
           </div>

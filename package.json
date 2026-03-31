@@ -1,8 +1,8 @@
 {
-  "name": "openclaw-manager",
-  "version": "0.0.19",
-  "description": "🦞 OpenClaw Cross-Platform Manager - High-Performance AI Assistant Configuration & Service Management",
-  "author": "OpenClaw Team",
+  "name": "openclaw-desktop",
+  "version": "1.0.0",
+  "description": "OpenClaw Desktop — One-click installer and manager for the OpenClaw AI assistant",
+  "author": "OpenClaw Desktop",
   "license": "MIT",
   "type": "module",
   "scripts": {

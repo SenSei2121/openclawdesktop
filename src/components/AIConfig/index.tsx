@@ -286,13 +286,13 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
       >
         {/* Header */}
         <div className="px-6 py-4 border-b border-dark-600 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
             {isEditing ? <Settings2 size={20} className="text-claw-400" /> : <Plus size={20} className="text-claw-400" />}
             {isEditing
               ? `Edit Provider: ${editingProvider?.name}`
               : (step === 'select' ? 'Add AI Provider' : `Configure ${selectedOfficial?.name || 'Custom Provider'}`)}
           </h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-white">
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-900">
             ✕
           </button>
         </div>
@@ -310,7 +310,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
               >
                 {/* Official Providers */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-400">Official Providers</h3>
+                  <h3 className="text-sm font-medium text-gray-500">Official Providers</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {officialProviders.map(provider => (
                       <button
@@ -320,7 +320,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                       >
                         <span className="text-2xl">{provider.icon}</span>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-white truncate">{provider.name}</p>
+                          <p className="font-medium text-gray-800 truncate">{provider.name}</p>
                           <p className="text-xs text-gray-500 truncate">
                             {provider.suggested_models.length} models
                           </p>
@@ -335,7 +335,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                 <div className="pt-4 border-t border-dark-600">
                   <button
                     onClick={handleSelectCustom}
-                    className="w-full flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-dashed border-dark-500 hover:border-claw-500/50 text-gray-400 hover:text-white transition-all"
+                    className="w-full flex items-center justify-center gap-2 p-4 rounded-xl border-2 border-dashed border-dark-500 hover:border-claw-500/50 text-gray-500 hover:text-gray-900 transition-all"
                   >
                     <Settings2 size={18} />
                     <span>Custom Provider (OpenAI/Anthropic API Compatible)</span>
@@ -352,7 +352,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
               >
                 {/* Provider Name */}
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-sm text-gray-500 mb-2">
                     Provider Name
                     <span className="text-gray-600 text-xs ml-2">(For configuration identifier, e.g., anthropic-custom)</span>
                   </label>
@@ -390,7 +390,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
 
                 {/* API URL */}
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">API URL</label>
+                  <label className="block text-sm text-gray-500 mb-2">API URL</label>
                   <input
                     type="text"
                     value={baseUrl}
@@ -402,7 +402,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
 
                 {/* API Key */}
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-sm text-gray-500 mb-2">
                     API Key
                     {!selectedOfficial?.requires_api_key && (
                       <span className="text-gray-600 text-xs ml-2">(Optional)</span>
@@ -412,7 +412,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                   {isEditing && editingProvider?.has_api_key && (
                     <div className="mb-2 flex items-center gap-2 text-sm">
                       <span className="text-gray-500">Current:</span>
-                      <code className="px-2 py-0.5 bg-dark-600 rounded text-gray-400">
+                      <code className="px-2 py-0.5 bg-dark-600 rounded text-gray-500">
                         {editingProvider.api_key_masked}
                       </code>
                       <span className="text-green-400 text-xs">✓ Configured</span>
@@ -431,7 +431,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                     <button
                       type="button"
                       onClick={() => setShowApiKey(!showApiKey)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-900"
                     >
                       {showApiKey ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
@@ -445,7 +445,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
 
                 {/* API Type */}
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">API Type</label>
+                  <label className="block text-sm text-gray-500 mb-2">API Type</label>
                   <select
                     value={apiType}
                     onChange={e => setApiType(e.target.value)}
@@ -458,7 +458,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
 
                 {/* Model Selection */}
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-sm text-gray-500 mb-2">
                     Select Models
                     <span className="text-gray-600 text-xs ml-2">
                       ({selectedModels.length} selected)
@@ -482,7 +482,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                           <div>
                             <p className={clsx(
                               'text-sm font-medium',
-                              selectedModels.includes(model.id) ? 'text-white' : 'text-gray-300'
+                              selectedModels.includes(model.id) ? 'text-gray-800' : 'text-gray-600'
                             )}>
                               {model.name}
                               {model.recommended && (
@@ -528,7 +528,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                         .map(modelId => (
                           <span
                             key={modelId}
-                            className="inline-flex items-center gap-1 px-2 py-1 bg-dark-600 rounded-lg text-sm text-gray-300"
+                            className="inline-flex items-center gap-1 px-2 py-1 bg-dark-600 rounded-lg text-sm text-gray-600"
                           >
                             {modelId}
                             <button
@@ -546,7 +546,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                   {providerName === 'ollama' && (
                     <div className="mt-4 p-4 bg-dark-700 border border-dark-500 rounded-xl space-y-4">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-medium text-white flex items-center gap-2">
+                        <h4 className="text-sm font-medium text-gray-800 flex items-center gap-2">
                           <Server size={16} className="text-claw-400" />
                           Ollama Setup
                         </h4>
@@ -560,7 +560,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                       </div>
 
                       {isOllamaInstalled === false && (
-                        <div className="text-sm text-gray-400 flex flex-col gap-2">
+                        <div className="text-sm text-gray-500 flex flex-col gap-2">
                           <p>Ollama was not detected on your system. You'll need to install it to run models locally.</p>
                           <a
                             href="https://ollama.com/download"
@@ -577,7 +577,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                         <>
                           {installedOllamaModels.length > 0 && (
                             <div className="space-y-2">
-                              <p className="text-xs text-gray-400">Detected Local Models:</p>
+                              <p className="text-xs text-gray-500">Detected Local Models:</p>
                               <div className="flex flex-wrap gap-2">
                                 {installedOllamaModels.map(m => (
                                   <button
@@ -591,7 +591,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                                       "px-2 py-1 text-xs rounded-md border transition-colors",
                                       selectedModels.includes(m)
                                         ? "bg-claw-500/20 text-claw-300 border-claw-500/50"
-                                        : "bg-dark-600 border-dark-500 text-gray-300 hover:border-claw-500 hover:text-white"
+                                        : "bg-dark-600 border-dark-500 text-gray-600 hover:border-claw-500 hover:text-gray-900"
                                     )}
                                   >
                                     + {m}
@@ -602,7 +602,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                           )}
 
                           <div className="pt-2 border-t border-dark-600">
-                            <p className="text-xs text-gray-400 mb-2">Install a new model (e.g., qwen3.5:9b, llama3)</p>
+                            <p className="text-xs text-gray-500 mb-2">Install a new model (e.g., qwen3.5:9b, llama3)</p>
                             <div className="flex gap-2">
                               <input
                                 type="text"
@@ -725,7 +725,7 @@ function ProviderDialog({ officialProviders, onClose, onSave, editingProvider }:
                       </button>
                       <button
                         onClick={() => setShowCustomUrlWarning(false)}
-                        className="text-sm text-gray-400 hover:text-white px-3"
+                        className="text-sm text-gray-500 hover:text-gray-900 px-3"
                       >
                         Cancel
                       </button>
@@ -832,7 +832,7 @@ function ProviderCard({ provider, officialProviders, onSetPrimary, onRefresh, on
         <span className="text-xl">{officialInfo?.icon || '🔌'}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-white">{provider.name}</h3>
+            <h3 className="font-medium text-gray-800">{provider.name}</h3>
             {provider.has_api_key && (
               <span className="px-1.5 py-0.5 bg-green-500/20 text-green-400 text-xs rounded">
                 Configured
@@ -868,7 +868,7 @@ function ProviderCard({ provider, officialProviders, onSetPrimary, onRefresh, on
               {provider.api_key_masked && (
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gray-500">API Key:</span>
-                  <code className="px-2 py-0.5 bg-dark-600 rounded text-gray-400">
+                  <code className="px-2 py-0.5 bg-dark-600 rounded text-gray-500">
                     {provider.api_key_masked}
                   </code>
                 </div>
@@ -891,7 +891,7 @@ function ProviderCard({ provider, officialProviders, onSetPrimary, onRefresh, on
                       <div>
                         <p className={clsx(
                           'text-sm font-medium',
-                          model.is_primary ? 'text-white' : 'text-gray-300'
+                          model.is_primary ? 'text-gray-800' : 'text-gray-600'
                         )}>
                           {model.name}
                           {model.is_primary && (
@@ -1083,7 +1083,7 @@ export function AIConfig() {
             <p className="text-sm text-red-400">{error}</p>
             <button
               onClick={loadData}
-              className="mt-2 text-sm text-red-300 hover:text-white underline"
+              className="mt-2 text-sm text-red-300 hover:text-gray-900 underline"
             >
               Retry
             </button>
@@ -1094,7 +1094,7 @@ export function AIConfig() {
         <div className="bg-gradient-to-br from-dark-700 to-dark-800 rounded-2xl p-6 border border-dark-500">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+              <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
                 <Sparkles size={22} className="text-claw-400" />
                 AI Model Configuration
               </h2>
@@ -1117,9 +1117,9 @@ export function AIConfig() {
               <Star size={24} className="text-claw-400" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-400">Current Primary Model</p>
+              <p className="text-sm text-gray-500">Current Primary Model</p>
               {aiConfig?.primary_model ? (
-                <p className="text-lg font-medium text-white">{aiConfig.primary_model}</p>
+                <p className="text-lg font-medium text-gray-800">{aiConfig.primary_model}</p>
               ) : (
                 <p className="text-lg text-gray-500">Not Set</p>
               )}
@@ -1167,12 +1167,12 @@ export function AIConfig() {
                     {testResult.success ? 'Connection Successful' : 'Connection Failed'}
                   </p>
                   {testResult.latency_ms && (
-                    <p className="text-xs text-gray-400">Response Time: {testResult.latency_ms}ms</p>
+                    <p className="text-xs text-gray-500">Response Time: {testResult.latency_ms}ms</p>
                   )}
                 </div>
                 <button
                   onClick={() => setTestResult(null)}
-                  className="text-gray-500 hover:text-white text-sm"
+                  className="text-gray-500 hover:text-gray-900 text-sm"
                 >
                   Close
                 </button>
@@ -1180,8 +1180,8 @@ export function AIConfig() {
 
               {testResult.response && (
                 <div className="mt-2 p-3 bg-dark-700 rounded-lg">
-                  <p className="text-xs text-gray-400 mb-1">AI Response:</p>
-                  <p className="text-sm text-white whitespace-pre-wrap">{testResult.response}</p>
+                  <p className="text-xs text-gray-500 mb-1">AI Response:</p>
+                  <p className="text-sm text-gray-800 whitespace-pre-wrap">{testResult.response}</p>
                 </div>
               )}
 
@@ -1197,7 +1197,7 @@ export function AIConfig() {
 
         {/* Configured Providers List */}
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-white flex items-center gap-2">
+          <h3 className="text-lg font-medium text-gray-800 flex items-center gap-2">
             <Server size={18} className="text-gray-500" />
             Configured Providers
           </h3>
@@ -1207,7 +1207,7 @@ export function AIConfig() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-dark-600 flex items-center justify-center">
                 <Plus size={24} className="text-gray-500" />
               </div>
-              <p className="text-gray-400 mb-4">No AI Providers configured yet</p>
+              <p className="text-gray-500 mb-4">No AI Providers configured yet</p>
               <button
                 onClick={() => setShowAddDialog(true)}
                 className="btn-primary"
@@ -1234,7 +1234,7 @@ export function AIConfig() {
         {/* Available Models List */}
         {aiConfig && aiConfig.available_models.length > 0 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-white flex items-center gap-2">
+            <h3 className="text-lg font-medium text-gray-800 flex items-center gap-2">
               <Cpu size={18} className="text-gray-500" />
               Available Models
               <span className="text-sm font-normal text-gray-500">
@@ -1250,7 +1250,7 @@ export function AIConfig() {
                       'inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm',
                       modelId === aiConfig.primary_model
                         ? 'bg-claw-500/20 text-claw-300 border border-claw-500/30'
-                        : 'bg-dark-600 text-gray-300'
+                        : 'bg-dark-600 text-gray-600'
                     )}
                   >
                     {modelId === aiConfig.primary_model && <Star size={12} />}
@@ -1264,7 +1264,7 @@ export function AIConfig() {
 
         {/* Configuration Notes */}
         <div className="bg-dark-700/50 rounded-xl p-4 border border-dark-500">
-          <h4 className="text-sm font-medium text-gray-400 mb-2">Configuration Notes</h4>
+          <h4 className="text-sm font-medium text-gray-500 mb-2">Configuration Notes</h4>
           <ul className="text-sm text-gray-500 space-y-1">
             <li>• Provider configuration is saved in <code className="text-claw-400">~/.openclaw/openclaw.json</code></li>
             <li>• Supports official Providers (Anthropic, OpenAI, Kimi, etc.) and custom OpenAI/Anthropic compatible APIs</li>

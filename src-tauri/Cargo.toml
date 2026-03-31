@@ -1,8 +1,8 @@
 [package]
-name = "openclaw-manager"
-version = "0.0.19"
-description = "OpenClaw Cross-Platform Manager"
-authors = ["OpenClaw Team"]
+name = "openclaw-desktop"
+version = "1.0.0"
+description = "OpenClaw Desktop — One-click installer and manager"
+authors = ["OpenClaw Desktop"]
 edition = "2021"
 
 [build-dependencies]

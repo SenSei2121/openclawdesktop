@@ -23,7 +23,7 @@ fn main() {
     })
     .init();
     
-    log::info!("🦞 OpenClaw Manager started");
+    log::info!("🦞 OpenClaw Desktop started");
 
     tauri::Builder::default()
         .setup(|app| {
@@ -113,12 +113,8 @@ fn main() {
             installer::update_openclaw,
             // Skills management
             skills::get_skills,
-            skills::check_clawhub_installed,
-            skills::install_clawhub,
             skills::install_skill,
             skills::uninstall_skill,
-            skills::uninstall_skill,
-            skills::uninstall_clawhub,
             // Multi-Agent Routing
             config::get_openclaw_home_dir,
             config::get_agents_config,

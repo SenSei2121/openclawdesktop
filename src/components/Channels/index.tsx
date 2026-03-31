@@ -100,7 +100,7 @@ const DmAllowListEditor = ({
   return (
     <div className="p-3 bg-dark-600 rounded-lg border border-dark-500 space-y-2 mt-3">
       <div className="flex items-center justify-between">
-        <label className="text-xs text-gray-400 font-semibold">Allowed DM Users (User ID)</label>
+        <label className="text-xs text-gray-500 font-semibold">Allowed DM Users (User ID)</label>
         <button
           onClick={fetchUsers}
           disabled={fetching || !botToken}
@@ -122,7 +122,7 @@ const DmAllowListEditor = ({
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-gray-200 truncate">{u.name}</span>
                   {u.username && <span className="text-gray-500 text-[10px]">@{u.username}</span>}
-                  <span className="font-mono text-gray-400 text-[10px]">{u.id}</span>
+                  <span className="font-mono text-gray-500 text-[10px]">{u.id}</span>
                 </div>
                 {alreadyAdded ? (
                   <span className="text-green-400 text-[10px] flex items-center gap-0.5"><Check size={10} /> Added</span>
@@ -167,7 +167,7 @@ const DmAllowListEditor = ({
       <div className="space-y-1 max-h-32 overflow-y-auto">
         {allowedUsers.map(id => (
           <div key={id} className="flex items-center justify-between text-xs bg-dark-500 px-2.5 py-1 rounded-lg border border-dark-400">
-            <span className="font-mono text-gray-300">{id}</span>
+            <span className="font-mono text-gray-600">{id}</span>
             <button
               onClick={() => removeUser(id)}
               className="text-gray-500 hover:text-red-400"
@@ -812,14 +812,14 @@ export function Channels() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Channel list */}
           <div className="md:col-span-1 space-y-2">
-            <h3 className="text-sm font-medium text-gray-400 mb-3 px-1">
+            <h3 className="text-sm font-medium text-gray-500 mb-3 px-1">
               Message Channels
             </h3>
             {channels.map((channel) => {
               const info = channelInfo[channel.channel_type] || {
                 name: channel.channel_type,
                 icon: <MessageSquare size={20} />,
-                color: 'text-gray-400',
+                color: 'text-gray-500',
                 fields: [],
               };
               const isSelected = selectedChannel === channel.id;
@@ -848,7 +848,7 @@ export function Channels() {
                     <p
                       className={clsx(
                         'text-sm font-medium',
-                        isSelected ? 'text-white' : 'text-gray-300'
+                        isSelected ? 'text-gray-800' : 'text-gray-600'
                       )}
                     >
                       {info.name}
@@ -890,7 +890,7 @@ export function Channels() {
                     {currentInfo.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-semibold text-gray-800">
                       Configure {currentInfo.name}
                     </h3>
                     {currentInfo.helpText && (
@@ -904,15 +904,15 @@ export function Channels() {
                   <div className="mb-4">
                     {feishuPluginLoading ? (
                       <div className="p-4 bg-dark-600 rounded-xl border border-dark-500 flex items-center gap-3">
-                        <Loader2 size={20} className="animate-spin text-gray-400" />
-                        <span className="text-gray-400">Checking Feishu plugin status...</span>
+                        <Loader2 size={20} className="animate-spin text-gray-500" />
+                        <span className="text-gray-500">Checking Feishu plugin status...</span>
                       </div>
                     ) : feishuPluginStatus?.installed ? (
                       <div className="p-4 bg-green-500/10 rounded-xl border border-green-500/30 flex items-center gap-3">
                         <Package size={20} className="text-green-400" />
                         <div className="flex-1">
                           <p className="text-green-400 font-medium">Feishu plugin installed</p>
-                          <p className="text-xs text-gray-400 mt-0.5">
+                          <p className="text-xs text-gray-500 mt-0.5">
                             {feishuPluginStatus.plugin_name || '@m1heng-clawd/feishu'}
                             {feishuPluginStatus.version && ` v${feishuPluginStatus.version}`}
                           </p>
@@ -925,7 +925,7 @@ export function Channels() {
                           <AlertTriangle size={20} className="text-amber-400 mt-0.5" />
                           <div className="flex-1">
                             <p className="text-amber-400 font-medium">Feishu plugin installation required</p>
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-gray-500 mt-1">
                               Feishu channel requires the @m1heng-clawd/feishu plugin to be installed first.
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
@@ -950,7 +950,7 @@ export function Channels() {
                               </button>
                             </div>
                             <p className="text-xs text-gray-500 mt-2">
-                              Or run manually: <code className="px-1.5 py-0.5 bg-dark-600 rounded text-gray-400">openclaw plugins install @m1heng-clawd/feishu</code>
+                              Or run manually: <code className="px-1.5 py-0.5 bg-dark-600 rounded text-gray-500">openclaw plugins install @m1heng-clawd/feishu</code>
                             </p>
                           </div>
                         </div>
@@ -963,7 +963,7 @@ export function Channels() {
                 {currentChannel.channel_type === 'telegram' && telegramAccounts.length > 0 && (
                   <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/30 flex items-start gap-2 mb-4">
                     <Bot size={16} className="text-blue-400 mt-0.5 shrink-0" />
-                    <p className="text-xs text-gray-300">
+                    <p className="text-xs text-gray-600">
                       <strong className="text-blue-400">Multi-bot mode active.</strong> Bot Token, DM Policy, Group Policy, and Stream Mode are now configured per-account below.
                     </p>
                   </div>
@@ -981,7 +981,7 @@ export function Channels() {
                     })
                     .map((field) => (
                       <div key={field.key}>
-                        <label className="block text-sm text-gray-400 mb-2">
+                        <label className="block text-sm text-gray-500 mb-2">
                           {field.label}
                           {field.required && <span className="text-red-400 ml-1">*</span>}
                           {configForm[field.key] && (
@@ -1018,7 +1018,7 @@ export function Channels() {
                             <button
                               type="button"
                               onClick={() => togglePasswordVisibility(field.key)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors"
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-900 transition-colors"
                               title={visiblePasswords.has(field.key) ? 'Hide' : 'Show'}
                             >
                               {visiblePasswords.has(field.key) ? (
@@ -1045,7 +1045,7 @@ export function Channels() {
                           <div className="mt-3 space-y-3">
                             {/* Allowed Groups */}
                             <div className="p-4 bg-dark-600 rounded-xl border border-dark-500">
-                              <label className="block text-sm text-gray-400 mb-2">Allowed Groups (Chat ID)</label>
+                              <label className="block text-sm text-gray-500 mb-2">Allowed Groups (Chat ID)</label>
                               <div className="flex gap-2 mb-2">
                                 <input
                                   type="text"
@@ -1079,7 +1079,7 @@ export function Channels() {
                                 {Object.entries(allowedGroups).map(([id, settings]) => (
                                   <div key={id} className="bg-dark-500 rounded-lg border border-dark-400 overflow-hidden">
                                     <div className="flex items-center justify-between px-3 py-2">
-                                      <span className="font-mono text-sm text-gray-300">{id}</span>
+                                      <span className="font-mono text-sm text-gray-600">{id}</span>
                                       <div className="flex items-center gap-2">
                                         <button
                                           onClick={() => setAllowedGroups({ ...allowedGroups, [id]: { ...settings, enabled: !settings.enabled } })}
@@ -1151,7 +1151,7 @@ export function Channels() {
 
                             {/* Group Allowed Senders (groupAllowFrom) */}
                             <div className="p-4 bg-dark-600 rounded-xl border border-dark-500">
-                              <label className="block text-sm text-gray-400 mb-2">Allowed Senders in Groups (User ID)</label>
+                              <label className="block text-sm text-gray-500 mb-2">Allowed Senders in Groups (User ID)</label>
                               <div className="flex gap-2 mb-2">
                                 <input
                                   type="text"
@@ -1184,7 +1184,7 @@ export function Channels() {
                               <div className="space-y-1 max-h-40 overflow-y-auto">
                                 {groupAllowFromUsers.map(id => (
                                   <div key={id} className="flex items-center justify-between text-sm bg-dark-500 px-3 py-1.5 rounded-lg border border-dark-400">
-                                    <span className="font-mono text-gray-300">{id}</span>
+                                    <span className="font-mono text-gray-600">{id}</span>
                                     <button
                                       onClick={() => setGroupAllowFromUsers(groupAllowFromUsers.filter(u => u !== id))}
                                       className="text-gray-500 hover:text-red-400"
@@ -1224,8 +1224,8 @@ export function Channels() {
                       <div className="flex items-center gap-3 mb-3">
                         <QrCode size={24} className="text-green-400" />
                         <div>
-                          <p className="text-white font-medium">QR Code Login</p>
-                          <p className="text-xs text-gray-400">WhatsApp requires QR code scan to login</p>
+                          <p className="text-gray-800 font-medium">QR Code Login</p>
+                          <p className="text-xs text-gray-500">WhatsApp requires QR code scan to login</p>
                         </div>
                       </div>
                       <div className="flex gap-2">
@@ -1269,7 +1269,7 @@ export function Channels() {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <Bot size={18} className="text-blue-400" />
-                          <h4 className="text-sm font-semibold text-white">Bot Accounts</h4>
+                          <h4 className="text-sm font-semibold text-gray-800">Bot Accounts</h4>
                           <span className="text-xs text-gray-500">Multi-agent routing</span>
                         </div>
                         <button
@@ -1386,7 +1386,7 @@ export function Channels() {
                                     return (
                                       <div className="p-3 bg-dark-600 rounded-lg border border-dark-500 space-y-2">
                                         <div className="flex items-center justify-between">
-                                          <label className="text-xs text-gray-400 font-semibold">Allowed Groups</label>
+                                          <label className="text-xs text-gray-500 font-semibold">Allowed Groups</label>
                                         </div>
                                         <div className="flex gap-2">
                                           <input
@@ -1446,7 +1446,7 @@ export function Channels() {
                                         {Object.entries(groups).map(([gid, gsettings]) => (
                                           <div key={gid} className="bg-dark-700 rounded-lg border border-dark-500 overflow-hidden">
                                             <div className="flex items-center justify-between px-2 py-1.5">
-                                              <span className="font-mono text-xs text-gray-300">{gid}</span>
+                                              <span className="font-mono text-xs text-gray-600">{gid}</span>
                                               <div className="flex items-center gap-1.5">
                                                 <button
                                                   onClick={() => updateGroups({ ...groups, [gid]: { ...gsettings, enabled: !gsettings.enabled } })}
@@ -1559,7 +1559,7 @@ export function Channels() {
                       {/* Add Account Dialog */}
                       {showAddAccountDialog && (
                         <div className="mt-3 p-3 bg-dark-700 rounded-lg border border-claw-500/30">
-                          <h5 className="text-sm font-medium text-white mb-2">Add Bot Account</h5>
+                          <h5 className="text-sm font-medium text-gray-800 mb-2">Add Bot Account</h5>
                           <div className="space-y-2">
                             <input
                               type="text"
@@ -1660,7 +1660,7 @@ export function Channels() {
                         </button>
                         <button
                           onClick={() => setShowClearConfirm(false)}
-                          className="px-2 py-1 text-xs bg-dark-600 text-gray-300 rounded hover:bg-dark-500 transition-colors"
+                          className="px-2 py-1 text-xs bg-dark-600 text-gray-600 rounded hover:bg-dark-500 transition-colors"
                         >
                           Cancel
                         </button>
@@ -1690,7 +1690,7 @@ export function Channels() {
                         )}>
                           {testResult.success ? 'Test successful' : 'Test failed'}
                         </p>
-                        <p className="text-sm text-gray-400 mt-1">{testResult.message}</p>
+                        <p className="text-sm text-gray-500 mt-1">{testResult.message}</p>
                         {testResult.error && (
                           <p className="text-xs text-red-300 mt-2 whitespace-pre-wrap">
                             {testResult.error}

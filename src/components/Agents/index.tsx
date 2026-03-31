@@ -282,11 +282,11 @@ export function Agents() {
                         onClick={() => setShowRoutingFlow(!showRoutingFlow)}
                         className="w-full flex items-center justify-between mb-4 group cursor-pointer"
                     >
-                        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+                        <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
                             <Sparkles className="text-amber-400" size={24} />
                             Routing Flow
                         </h2>
-                        <div className="flex items-center gap-2 text-gray-500 group-hover:text-gray-300 transition-colors">
+                        <div className="flex items-center gap-2 text-gray-500 group-hover:text-gray-600 transition-colors">
                             <span className="text-xs">{showRoutingFlow ? 'Hide' : 'Show'}</span>
                             <ChevronDown size={16} className={`transition-transform ${showRoutingFlow ? 'rotate-180' : ''}`} />
                         </div>
@@ -310,7 +310,7 @@ export function Agents() {
                                                         <span className="font-medium">{binding.match_rule?.account_id || 'Any'}</span>
                                                     </div>
                                                     <ChevronRight size={16} className="text-gray-600 mx-1 flex-shrink-0" />
-                                                    <div className="px-3 py-2 rounded-lg bg-dark-600 border border-dark-500 text-gray-400 text-xs">
+                                                    <div className="px-3 py-2 rounded-lg bg-dark-600 border border-dark-500 text-gray-500 text-xs">
                                                         {binding.match_rule?.channel || 'any'}
                                                     </div>
                                                     <ChevronRight size={16} className="text-gray-600 mx-1 flex-shrink-0" />
@@ -319,7 +319,7 @@ export function Agents() {
                                                         <span className="font-medium">{binding.agent_id}</span>
                                                     </div>
                                                     <ChevronRight size={16} className="text-gray-600 mx-1 flex-shrink-0" />
-                                                    <div className="px-3 py-2 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs max-w-[200px] truncate">
+                                                    <div className="px-3 py-2 rounded-lg bg-claw-500/10 border border-claw-500/30 text-claw-500 text-xs max-w-[200px] truncate">
                                                         {agent?.model || 'Default Model'}
                                                     </div>
                                                 </div>
@@ -337,7 +337,7 @@ export function Agents() {
             <section>
                 <div className="flex items-center justify-between mb-4">
                     <div>
-                        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+                        <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
                             <Users className="text-claw-400" size={24} />
                             Agents
                         </h2>
@@ -389,7 +389,7 @@ export function Agents() {
                                             {agent.id.charAt(0).toUpperCase()}
                                         </div>
                                         <div>
-                                            <h3 className="font-medium text-white">{agent.name || agent.id}</h3>
+                                            <h3 className="font-medium text-gray-800">{agent.name || agent.id}</h3>
                                             <div className="flex gap-1">
                                                 {agent.default && <span className="text-xs text-emerald-400 bg-emerald-500/10 px-1.5 rounded">Default</span>}
                                                 {agent.sandbox && <span className="text-xs text-amber-400 bg-amber-500/10 px-1.5 rounded">Sandbox</span>}
@@ -399,7 +399,7 @@ export function Agents() {
                                     <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
                                         <button
                                             onClick={() => handleCloneAgent(agent)}
-                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-400 hover:text-blue-400"
+                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-500 hover:text-blue-400"
                                             title="Clone Agent"
                                         >
                                             <Copy size={14} />
@@ -410,14 +410,14 @@ export function Agents() {
                                                 setAgentForm(agent);
                                                 setShowAgentDialog(true);
                                             }}
-                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-400 hover:text-white"
+                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-500 hover:text-gray-900"
                                             title="Edit Agent"
                                         >
                                             <Pencil size={14} />
                                         </button>
                                         <button
                                             onClick={() => handleDeleteAgent(agent.id)}
-                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-400 hover:text-red-400"
+                                            className="p-1.5 hover:bg-dark-600 rounded text-gray-500 hover:text-red-400"
                                             title="Delete Agent"
                                         >
                                             <Trash2 size={14} />
@@ -425,10 +425,10 @@ export function Agents() {
                                     </div>
                                 </div>
 
-                                <div className="space-y-2 text-sm text-gray-400">
+                                <div className="space-y-2 text-sm text-gray-500">
                                     {agent.agent_dir && (
                                         <div className="flex items-center gap-2" title="Agent Directory">
-                                            <div className="text-xs px-1.5 py-0.5 bg-dark-600 rounded border border-dark-500 font-mono text-gray-400">
+                                            <div className="text-xs px-1.5 py-0.5 bg-dark-600 rounded border border-dark-500 font-mono text-gray-500">
                                                 ./{agent.agent_dir}
                                             </div>
                                         </div>
@@ -450,8 +450,8 @@ export function Agents() {
             <section>
                 <div className="flex items-center justify-between mb-4">
                     <div>
-                        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
-                            <GitMerge className="text-purple-400" size={24} />
+                        <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+                            <GitMerge className="text-claw-500" size={24} />
                             Routing Rules
                         </h2>
                         <p className="text-sm text-gray-500">Route incoming messages to specific agents</p>
@@ -474,7 +474,7 @@ export function Agents() {
 
                 <div className="bg-dark-700 rounded-xl border border-dark-600 overflow-hidden">
                     <table className="w-full text-left text-sm">
-                        <thead className="bg-dark-800 text-gray-400">
+                        <thead className="bg-dark-800 text-gray-500">
                             <tr>
                                 <th className="px-4 py-3 font-medium">If Matches...</th>
                                 <th className="px-4 py-3 font-medium">Route To Agent</th>
@@ -509,7 +509,7 @@ export function Agents() {
                                             </div>
                                         </td>
                                         <td className="px-4 py-3">
-                                            <div className="flex items-center gap-2 text-white font-medium">
+                                            <div className="flex items-center gap-2 text-gray-800 font-medium">
                                                 <ArrowRight size={14} className="text-gray-500" />
                                                 {binding.agent_id}
                                             </div>
@@ -519,7 +519,7 @@ export function Agents() {
                                                 <button
                                                     onClick={() => handleTestRouting(binding.match_rule?.account_id || binding.agent_id)}
                                                     disabled={testingAccount === (binding.match_rule?.account_id || binding.agent_id)}
-                                                    className="p-1.5 hover:bg-dark-500 rounded text-gray-400 hover:text-green-400 transition-colors"
+                                                    className="p-1.5 hover:bg-dark-500 rounded text-gray-500 hover:text-green-400 transition-colors"
                                                     title="Test Routing"
                                                 >
                                                     {testingAccount === (binding.match_rule?.account_id || binding.agent_id)
@@ -529,7 +529,7 @@ export function Agents() {
                                                 </button>
                                                 <button
                                                     onClick={() => handleDeleteBinding(idx)}
-                                                    className="p-1.5 hover:bg-dark-500 rounded text-gray-400 hover:text-red-400 transition-colors"
+                                                    className="p-1.5 hover:bg-dark-500 rounded text-gray-500 hover:text-red-400 transition-colors"
                                                     title="Delete Rule"
                                                 >
                                                     <Trash2 size={14} />
@@ -560,25 +560,25 @@ export function Agents() {
                                         ? <CheckCircle2 size={18} className="text-green-400" />
                                         : <AlertCircle size={18} className="text-amber-400" />
                                     }
-                                    <span className="text-sm font-semibold text-white">Routing Test Result</span>
+                                    <span className="text-sm font-semibold text-gray-800">Routing Test Result</span>
                                 </div>
-                                <button onClick={() => setTestResult(null)} className="text-gray-500 hover:text-white"><X size={14} /></button>
+                                <button onClick={() => setTestResult(null)} className="text-gray-500 hover:text-gray-900"><X size={14} /></button>
                             </div>
                             <div className="space-y-2 text-sm">
                                 <div className="flex items-center gap-2">
-                                    <span className="text-gray-400">Agent:</span>
-                                    <span className="text-white font-medium">{testResult.agent_id}</span>
+                                    <span className="text-gray-500">Agent:</span>
+                                    <span className="text-gray-800 font-medium">{testResult.agent_id}</span>
                                 </div>
                                 {testResult.model && (
                                     <div className="flex items-center gap-2">
-                                        <span className="text-gray-400">Model:</span>
-                                        <span className="text-purple-300">{testResult.model}</span>
+                                        <span className="text-gray-500">Model:</span>
+                                        <span className="text-claw-500">{testResult.model}</span>
                                     </div>
                                 )}
                                 {testResult.system_prompt_preview && (
                                     <div>
-                                        <span className="text-gray-400 text-xs">Personality (SOUL.md):</span>
-                                        <div className="mt-1 p-2 bg-dark-700 rounded text-xs text-gray-300 font-mono max-h-24 overflow-auto">
+                                        <span className="text-gray-500 text-xs">Personality (SOUL.md):</span>
+                                        <div className="mt-1 p-2 bg-dark-700 rounded text-xs text-gray-600 font-mono max-h-24 overflow-auto">
                                             {testResult.system_prompt_preview}
                                         </div>
                                     </div>
@@ -604,15 +604,15 @@ export function Agents() {
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="px-6 py-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
-                                <h3 className="text-lg font-semibold text-white">
+                                <h3 className="text-lg font-semibold text-gray-800">
                                     {editingAgent ? 'Edit Agent' : 'Add New Agent'}
                                 </h3>
-                                <button onClick={() => setShowAgentDialog(false)} className="text-gray-500 hover:text-white"><X size={20} /></button>
+                                <button onClick={() => setShowAgentDialog(false)} className="text-gray-500 hover:text-gray-900"><X size={20} /></button>
                             </div>
 
                             <div className="p-6 space-y-4 overflow-y-auto">
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Agent ID *</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Agent ID *</label>
                                     <input
                                         type="text"
                                         value={agentForm.id}
@@ -624,7 +624,7 @@ export function Agents() {
                                 </div>
                                 {/* Default Agent checkbox removed - Main agent is always default */}\n
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Workspace Path</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Workspace Path</label>
                                     <input
                                         type="text"
                                         value={agentForm.workspace || ''}
@@ -632,10 +632,10 @@ export function Agents() {
                                         className="input-base"
                                         placeholder={openclawHomeDir ? (agentForm.default ? `${openclawHomeDir.replace(/\\/g, '/')}/workspace` : `${openclawHomeDir.replace(/\\/g, '/')}/workspace-${agentForm.id || 'agent'}`) : '/path/to/workspace'}
                                     />
-                                    <p className="text-xs text-gray-500 mt-1">Default: <code className="text-gray-400">{openclawHomeDir ? `${openclawHomeDir.replace(/\\/g, '/')}/workspace-${agentForm.id || '{id}'}` : '~/.openclaw/workspace-{id}'}</code></p>
+                                    <p className="text-xs text-gray-500 mt-1">Default: <code className="text-gray-500">{openclawHomeDir ? `${openclawHomeDir.replace(/\\/g, '/')}/workspace-${agentForm.id || '{id}'}` : '~/.openclaw/workspace-{id}'}</code></p>
                                 </div>
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Agent Directory</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Agent Directory</label>
                                     <input
                                         type="text"
                                         value={agentForm.agent_dir || ''}
@@ -646,7 +646,7 @@ export function Agents() {
                                     <p className="text-xs text-gray-500 mt-1">State & session storage directory.</p>
                                 </div>
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Model Override (Optional)</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Model Override (Optional)</label>
                                     <input
                                         type="text"
                                         value={agentForm.model || ''}
@@ -665,10 +665,10 @@ export function Agents() {
                                         onChange={e => setAgentForm({ ...agentForm, sandbox: e.target.checked })}
                                         className="w-4 h-4 rounded bg-dark-600 border-dark-500 text-claw-500 focus:ring-claw-500/50"
                                     />
-                                    <label htmlFor="sandbox" className="text-sm text-gray-300 select-none">Enable Sandbox</label>
+                                    <label htmlFor="sandbox" className="text-sm text-gray-600 select-none">Enable Sandbox</label>
                                 </div>
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Heartbeat Interval (Optional)</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Heartbeat Interval (Optional)</label>
                                     <input
                                         type="text"
                                         value={agentForm.heartbeat || ''}
@@ -680,7 +680,7 @@ export function Agents() {
 
                                 {/* Subagents — Allow Agents */}
                                 <div className="pt-3 border-t border-dark-600">
-                                    <label className="block text-sm text-gray-400 mb-2 flex items-center gap-2">
+                                    <label className="block text-sm text-gray-500 mb-2 flex items-center gap-2">
                                         <GitMerge size={14} />
                                         Allowed Subagents
                                     </label>
@@ -709,7 +709,7 @@ export function Agents() {
                                                             }}
                                                             className="w-4 h-4 rounded bg-dark-600 border-dark-500 text-claw-500 focus:ring-claw-500/50"
                                                         />
-                                                        <label htmlFor={`sub-${a.id}`} className="text-sm text-gray-300 select-none">{a.name || a.id}</label>
+                                                        <label htmlFor={`sub-${a.id}`} className="text-sm text-gray-600 select-none">{a.name || a.id}</label>
                                                     </div>
                                                 );
                                             })}
@@ -746,13 +746,13 @@ export function Agents() {
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="px-6 py-4 border-b border-dark-600 flex justify-between items-center">
-                                <h3 className="text-lg font-semibold text-white">Add Routing Rule</h3>
-                                <button onClick={() => setShowBindingDialog(false)} className="text-gray-500 hover:text-white"><X size={20} /></button>
+                                <h3 className="text-lg font-semibold text-gray-800">Add Routing Rule</h3>
+                                <button onClick={() => setShowBindingDialog(false)} className="text-gray-500 hover:text-gray-900"><X size={20} /></button>
                             </div>
 
                             <div className="p-6 space-y-4">
                                 <div>
-                                    <label className="block text-sm text-gray-400 mb-1">Route To Agent *</label>
+                                    <label className="block text-sm text-gray-500 mb-1">Route To Agent *</label>
                                     <select
                                         value={bindingForm.agent_id}
                                         onChange={e => setBindingForm({ ...bindingForm, agent_id: e.target.value })}
@@ -766,17 +766,17 @@ export function Agents() {
                                     <p className="text-xs text-gray-500 mb-3 uppercase font-semibold">Match Criteria</p>
                                     <div className="space-y-3">
                                         <div>
-                                            <label className="block text-sm text-gray-400 mb-1">Channel</label>
+                                            <label className="block text-sm text-gray-500 mb-1">Channel</label>
                                             <input
                                                 type="text"
                                                 value={bindingForm.match_rule.channel || 'telegram'}
                                                 readOnly
-                                                className="input-base bg-dark-700 text-gray-400 cursor-not-allowed"
+                                                className="input-base bg-dark-700 text-gray-500 cursor-not-allowed"
                                             />
                                             <p className="text-xs text-gray-500 mt-1">Currently only Telegram supports multi-agent routing.</p>
                                         </div>
                                         <div>
-                                            <label className="block text-sm text-gray-400 mb-1">Bot Account *</label>
+                                            <label className="block text-sm text-gray-500 mb-1">Bot Account *</label>
                                             <select
                                                 value={bindingForm.match_rule.account_id || ''}
                                                 onChange={e => setBindingForm({
@@ -825,9 +825,9 @@ export function Agents() {
                             <div className="px-6 py-4 border-b border-dark-600 flex justify-between items-center">
                                 <div className="flex items-center gap-3">
                                     <Zap className="text-amber-400" size={20} />
-                                    <h3 className="text-lg font-semibold text-white">Quick Agent Setup</h3>
+                                    <h3 className="text-lg font-semibold text-gray-800">Quick Agent Setup</h3>
                                 </div>
-                                <button onClick={() => setShowWizardDialog(false)} className="text-gray-500 hover:text-white"><X size={20} /></button>
+                                <button onClick={() => setShowWizardDialog(false)} className="text-gray-500 hover:text-gray-900"><X size={20} /></button>
                             </div>
 
                             {/* Step indicators */}
@@ -843,9 +843,9 @@ export function Agents() {
                             <div className="p-6 space-y-4 min-h-[220px]">
                                 {wizardStep === 0 && (
                                     <div className="space-y-4">
-                                        <p className="text-sm text-gray-300">Select the Telegram bot account to link with a new agent.</p>
+                                        <p className="text-sm text-gray-600">Select the Telegram bot account to link with a new agent.</p>
                                         <div>
-                                            <label className="block text-sm text-gray-400 mb-1">Bot Account</label>
+                                            <label className="block text-sm text-gray-500 mb-1">Bot Account</label>
                                             <select
                                                 value={wizardForm.botAccountId}
                                                 onChange={e => {
@@ -865,9 +865,9 @@ export function Agents() {
 
                                 {wizardStep === 1 && (
                                     <div className="space-y-4">
-                                        <p className="text-sm text-gray-300">Configure the agent that will handle messages for <span className="text-claw-400 font-medium">{wizardForm.botAccountId}</span>.</p>
+                                        <p className="text-sm text-gray-600">Configure the agent that will handle messages for <span className="text-claw-400 font-medium">{wizardForm.botAccountId}</span>.</p>
                                         <div>
-                                            <label className="block text-sm text-gray-400 mb-1">Agent ID</label>
+                                            <label className="block text-sm text-gray-500 mb-1">Agent ID</label>
                                             <input
                                                 type="text"
                                                 value={wizardForm.agentId}
@@ -875,11 +875,11 @@ export function Agents() {
                                                 className="input-base"
                                                 placeholder="e.g. coder"
                                             />
-                                            <p className="text-xs text-gray-500 mt-1">Workspace: <code className="text-gray-400">{`workspace-${wizardForm.agentId || '{id}'}/`}</code></p>
+                                            <p className="text-xs text-gray-500 mt-1">Workspace: <code className="text-gray-500">{`workspace-${wizardForm.agentId || '{id}'}/`}</code></p>
                                         </div>
                                         {/* Default Agent checkbox removed */}\n
                                         <div>
-                                            <label className="block text-sm text-gray-400 mb-1">Model Override (Optional)</label>
+                                            <label className="block text-sm text-gray-500 mb-1">Model Override (Optional)</label>
                                             <input
                                                 type="text"
                                                 value={wizardForm.model}

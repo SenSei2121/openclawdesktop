@@ -27,7 +27,7 @@ export function StatusCard({ status, loading }: StatusCardProps) {
   return (
     <div className="bg-dark-700 rounded-2xl p-6 border border-dark-500">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-white">Service Status</h3>
+        <h3 className="text-lg font-semibold text-gray-800">Service Status</h3>
         <div className="flex items-center gap-2">
           <div
             className={clsx(
@@ -54,9 +54,9 @@ export function StatusCard({ status, loading }: StatusCardProps) {
         <div className="bg-dark-600 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <Activity size={16} className="text-accent-cyan" />
-            <span className="text-xs text-gray-400">Port</span>
+            <span className="text-xs text-gray-500">Port</span>
           </div>
-          <p className="text-xl font-semibold text-white">
+          <p className="text-xl font-semibold text-gray-800">
             {status?.port || 18789}
           </p>
         </div>
@@ -64,9 +64,9 @@ export function StatusCard({ status, loading }: StatusCardProps) {
         <div className="bg-dark-600 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <Cpu size={16} className="text-accent-purple" />
-            <span className="text-xs text-gray-400">Process ID</span>
+            <span className="text-xs text-gray-500">Process ID</span>
           </div>
-          <p className="text-xl font-semibold text-white">
+          <p className="text-xl font-semibold text-gray-800">
             {status?.pid || '--'}
           </p>
         </div>
@@ -74,9 +74,9 @@ export function StatusCard({ status, loading }: StatusCardProps) {
         <div className="bg-dark-600 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <HardDrive size={16} className="text-accent-green" />
-            <span className="text-xs text-gray-400">Memory</span>
+            <span className="text-xs text-gray-500">Memory</span>
           </div>
-          <p className="text-xl font-semibold text-white">
+          <p className="text-xl font-semibold text-gray-800">
             {status?.memory_mb ? `${status.memory_mb.toFixed(1)} MB` : '--'}
           </p>
         </div>
@@ -84,9 +84,9 @@ export function StatusCard({ status, loading }: StatusCardProps) {
         <div className="bg-dark-600 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <Clock size={16} className="text-accent-amber" />
-            <span className="text-xs text-gray-400">Uptime</span>
+            <span className="text-xs text-gray-500">Uptime</span>
           </div>
-          <p className="text-xl font-semibold text-white">
+          <p className="text-xl font-semibold text-gray-800">
             {formatUptime(status?.uptime_seconds || null)}
           </p>
         </div>

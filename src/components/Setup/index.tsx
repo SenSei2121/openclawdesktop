@@ -168,8 +168,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
             exit={{ opacity: 0 }}
             className="text-center py-6"
           >
-            <Loader2 className="w-10 h-10 text-brand-500 animate-spin mx-auto mb-3" />
-            <p className="text-dark-300">Detecting system environment...</p>
+            <Loader2 className="w-10 h-10 text-claw-500 animate-spin mx-auto mb-3" />
+            <p className="text-gray-600">Detecting system environment...</p>
           </motion.div>
         )}
 
@@ -184,9 +184,9 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
           >
             {/* System info (non-embedded mode only) */}
             {!embedded && (
-              <div className="flex items-center justify-between text-sm text-dark-400 pb-4 border-b border-dark-700">
+              <div className="flex items-center justify-between text-sm text-gray-500 pb-4 border-b border-dark-700">
                 <span>Operating System</span>
-                <span className="text-dark-200">{getOsName(envStatus.os)}</span>
+                <span className="text-gray-800">{getOsName(envStatus.os)}</span>
               </div>
             )}
 
@@ -200,8 +200,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-white font-medium">Node.js</p>
-                  <p className="text-sm text-dark-400">
+                  <p className="text-gray-800 font-medium">Node.js</p>
+                  <p className="text-sm text-gray-500">
                     {envStatus.node_version
                       ? `${envStatus.node_version} ${envStatus.node_version_ok ? '✓' : '(requires v22+)'}`
                       : 'Not installed'}
@@ -242,8 +242,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
                   <Package className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-white font-medium">OpenClaw</p>
-                  <p className="text-sm text-dark-400">
+                  <p className="text-gray-800 font-medium">OpenClaw</p>
+                  <p className="text-sm text-gray-500">
                     {envStatus.openclaw_version || 'Not installed'}
                   </p>
                 </div>
@@ -313,7 +313,7 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
                 href="https://nodejs.org/en/download"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-dark-400 hover:text-brand-400 transition-colors inline-flex items-center gap-1"
+                className="text-sm text-gray-500 hover:text-claw-400 transition-colors inline-flex items-center gap-1"
               >
                 Manually download Node.js
                 <ExternalLink className="w-3 h-3" />
@@ -337,8 +337,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
             >
               <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-3" />
             </motion.div>
-            <h3 className="text-lg font-bold text-white mb-1">Environment Ready!</h3>
-            <p className="text-dark-400 text-sm">
+            <h3 className="text-lg font-bold text-gray-800 mb-1">Environment Ready!</h3>
+            <p className="text-gray-500 text-sm">
               Node.js and OpenClaw are properly installed
             </p>
           </motion.div>
@@ -356,8 +356,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
             <span className="text-2xl">⚠️</span>
           </div>
           <div>
-            <h2 className="text-lg font-bold text-white mb-1">Environment Setup</h2>
-            <p className="text-dark-400 text-sm">Missing dependencies detected, please complete the following installations</p>
+            <h2 className="text-lg font-bold text-gray-800 mb-1">Environment Setup</h2>
+            <p className="text-gray-500 text-sm">Missing dependencies detected, please complete the following installations</p>
           </div>
         </div>
 
@@ -372,8 +372,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
       {/* Background decoration */}
       <div className="fixed inset-0 bg-gradient-radial pointer-events-none" />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-claw-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-claw-500/10 rounded-full blur-3xl" />
       </div>
 
       <motion.div
@@ -387,12 +387,12 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', damping: 15 }}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 mb-4 shadow-lg shadow-brand-500/25"
+            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-claw-50 to-claw-100 mb-4 shadow-lg shadow-claw-500/25"
           >
-            <span className="text-4xl">🦞</span>
+            <img src="/logo.png" alt="OpenClaw" className="w-12 h-12 object-contain" />
           </motion.div>
-          <h1 className="text-2xl font-bold text-white mb-2">OpenClaw Manager</h1>
-          <p className="text-dark-400">Environment Detection & Setup Wizard</p>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">OpenClaw Desktop</h1>
+          <p className="text-gray-500">Environment Detection & Setup Wizard</p>
         </div>
 
         {/* Main card */}
@@ -404,8 +404,8 @@ export function Setup({ onComplete, embedded = false }: SetupProps) {
         </motion.div>
 
         {/* Version info */}
-        <p className="text-center text-dark-500 text-xs mt-6">
-          OpenClaw Manager v0.0.5
+        <p className="text-center text-gray-500 text-xs mt-6">
+          OpenClaw Desktop v1.0.0
         </p>
       </motion.div>
     </div>

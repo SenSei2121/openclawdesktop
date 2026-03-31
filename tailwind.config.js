@@ -9,50 +9,53 @@ export default {
       colors: {
         // OpenClaw brand colors
         claw: {
-          50: '#fef3f2',
-          100: '#fee4e2',
-          200: '#ffccc7',
-          300: '#ffa8a0',
-          400: '#ff7a6b',
-          500: '#f94d3a',  // Primary color - Lobster Red
-          600: '#e63024',
-          700: '#c1241a',
-          800: '#a02119',
-          900: '#84221c',
-          950: '#480d09',
+          50: '#fef1f1',
+          100: '#fde3e3',
+          200: '#fccbcb',
+          300: '#f9a3a3',
+          400: '#e04444',
+          500: '#e8272c',  // Primary color - matches website
+          600: '#c11a1f',
+          700: '#8e1a1d',
+          800: '#721a1c',
+          900: '#5a0f12',
+          950: '#320709',
         },
-        // Dark theme background
+        // Light theme backgrounds (warm-tinted to match website)
         dark: {
-          900: '#0a0a0b',
-          800: '#111113',
-          700: '#1a1a1d',
-          600: '#242428',
-          500: '#2e2e33',
-          400: '#3d3d44',
+          900: '#fdfcfb',  // Body/main background
+          800: '#f3f0ed',  // Sidebar, header backgrounds
+          700: '#ffffff',  // Card backgrounds
+          600: '#e6e2de',  // Borders, dividers
+          500: '#cec8c2',  // Secondary borders
+          400: '#a69e96',  // Muted elements
         },
         // Accent colors
         accent: {
-          cyan: '#22d3ee',
-          purple: '#a78bfa',
-          green: '#4ade80',
-          amber: '#fbbf24',
+          cyan: '#3b82f6',   // Blue (info)
+          purple: '#7c3aed',
+          green: '#10b981',  // Success green (matches website)
+          amber: '#f59e0b',  // Warning amber (matches website)
         }
       },
       fontFamily: {
         sans: [
-          'SF Pro Display',
+          'Inter',
+          'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
-          'PingFang SC',
-          'Hiragino Sans GB',
-          'Microsoft YaHei',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
           'sans-serif',
         ],
         mono: [
+          'ui-monospace',
+          'Cascadia Code',
           'SF Mono',
-          'JetBrains Mono',
-          'Fira Code',
           'Menlo',
+          'Consolas',
           'monospace',
         ],
       },
@@ -65,8 +68,8 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(249, 77, 58, 0.5)' },
-          '100%': { boxShadow: '0 0 20px rgba(249, 77, 58, 0.8)' },
+          '0%': { boxShadow: '0 0 5px rgba(232, 39, 44, 0.15)' },
+          '100%': { boxShadow: '0 0 20px rgba(232, 39, 44, 0.25)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
@@ -82,10 +85,17 @@ export default {
         },
       },
       boxShadow: {
-        'glow-claw': '0 0 30px rgba(249, 77, 58, 0.3)',
-        'glow-cyan': '0 0 30px rgba(34, 211, 238, 0.3)',
-        'glow-green': '0 0 30px rgba(74, 222, 128, 0.3)',
-        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+        'glow-claw': '0 6px 20px rgba(232, 39, 44, 0.1)',
+        'glow-cyan': '0 6px 20px rgba(59, 130, 246, 0.1)',
+        'glow-green': '0 6px 20px rgba(16, 185, 129, 0.1)',
+        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.6)',
+        'card': '0 1px 3px rgba(26, 22, 20, 0.06), 0 2px 8px rgba(26, 22, 20, 0.04)',
+        'card-hover': '0 6px 20px rgba(26, 22, 20, 0.08), 0 2px 6px rgba(26, 22, 20, 0.04)',
+        'card-lg': '0 12px 36px rgba(26, 22, 20, 0.08)',
+      },
+      borderRadius: {
+        '2xl': '16px',
+        '3xl': '20px',
       },
       backdropBlur: {
         xs: '2px',

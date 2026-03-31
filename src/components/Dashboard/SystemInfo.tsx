@@ -142,7 +142,7 @@ export function SystemInfo() {
   if (loading) {
     return (
       <div className="bg-dark-700 rounded-2xl p-6 border border-dark-500">
-        <h3 className="text-lg font-semibold text-white mb-4">System Requirements</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">System Requirements</h3>
         <div className="flex items-center justify-center py-8">
           <Loader2 className="w-8 h-8 text-claw-400 animate-spin" />
         </div>
@@ -153,8 +153,8 @@ export function SystemInfo() {
   if (!envStatus) {
     return (
       <div className="bg-dark-700 rounded-2xl p-6 border border-dark-500">
-        <h3 className="text-lg font-semibold text-white mb-4">System Requirements</h3>
-        <p className="text-gray-400 text-sm">Unable to detect system environment.</p>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">System Requirements</h3>
+        <p className="text-gray-500 text-sm">Unable to detect system environment.</p>
       </div>
     );
   }
@@ -222,7 +222,7 @@ export function SystemInfo() {
             <Shield size={18} className={allReady ? 'text-green-400' : 'text-amber-400'} />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-white">System Requirements</h3>
+            <h3 className="text-lg font-semibold text-gray-800">System Requirements</h3>
             <p className="text-xs text-gray-500">
               {allReady
                 ? 'All prerequisites are installed and ready'
@@ -233,7 +233,7 @@ export function SystemInfo() {
         <button
           onClick={handleRefresh}
           disabled={refreshing}
-          className="p-2 text-gray-400 hover:text-white hover:bg-dark-600 rounded-lg transition-colors"
+          className="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
           title="Re-check requirements"
         >
           <RefreshCw size={16} className={refreshing ? 'animate-spin' : ''} />
@@ -272,7 +272,7 @@ export function SystemInfo() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-white">{req.name}</span>
+                  <span className="text-sm font-medium text-gray-800">{req.name}</span>
                   {req.installed && req.version && (
                     <span className="text-xs text-gray-500 font-mono">{req.version}</span>
                   )}
@@ -312,7 +312,7 @@ export function SystemInfo() {
                   {req.downloadUrl && (
                     <button
                       onClick={() => handleOpenUrl(req.downloadUrl!)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-gray-300 hover:text-white hover:bg-dark-500 rounded-lg transition-colors text-xs"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors text-xs"
                       title={`Download ${req.name}`}
                     >
                       <ExternalLink size={12} />

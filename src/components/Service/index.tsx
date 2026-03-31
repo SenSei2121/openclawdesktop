@@ -75,7 +75,7 @@ export function ServiceManager() {
     if (line.includes('info') || line.includes('Info') || line.includes('INFO')) {
       return 'text-green-400';
     }
-    return 'text-gray-400';
+    return 'text-gray-500';
   };
 
   return (
@@ -138,7 +138,7 @@ export function ServiceManager() {
         <div className="flex-1" />
 
         <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2 text-sm text-gray-400">
+          <label className="flex items-center gap-2 text-sm text-gray-500">
             <input
               type="checkbox"
               checked={autoRefresh}
@@ -150,7 +150,7 @@ export function ServiceManager() {
 
           <button
             onClick={fetchLogs}
-            className="icon-button text-gray-400 hover:text-white"
+            className="icon-button text-gray-500 hover:text-gray-900"
           >
             <RefreshCw size={16} />
           </button>
@@ -162,7 +162,7 @@ export function ServiceManager() {
         {/* Log title bar */}
         <div className="flex items-center gap-2 px-4 py-2 bg-dark-700 border-b border-dark-600">
           <Terminal size={14} className="text-gray-500" />
-          <span className="text-xs text-gray-400 font-medium">
+          <span className="text-xs text-gray-500 font-medium">
             /tmp/openclaw-gateway.log
           </span>
           <div className="flex-1" />

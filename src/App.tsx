@@ -77,11 +77,11 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
       return (
         <div className="p-8 text-center">
           <AlertCircle size={48} className="mx-auto text-red-400 mb-4" />
-          <h2 className="text-xl font-bold text-white mb-2">Something went wrong</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Something went wrong</h2>
           <p className="text-red-200 mb-4">{this.state.error?.message}</p>
           <button
             onClick={() => this.setState({ hasError: false })}
-            className="px-4 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-white text-sm"
+            className="px-4 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-gray-800 text-sm"
           >
             Try again
           </button>
@@ -343,10 +343,10 @@ function App() {
   const LoadingSpinner = () => (
     <div className="flex h-full items-center justify-center">
       <div className="relative z-10 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 mb-4 animate-pulse shadow-lg shadow-purple-900/20">
-          <span className="text-3xl">🦞</span>
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-claw-50 to-claw-100 mb-4 animate-pulse shadow-lg shadow-claw-900/20">
+          <img src="/logo.png" alt="OpenClaw" className="w-10 h-10 object-contain" />
         </div>
-        <p className="text-dark-400 font-medium">Loading component...</p>
+        <p className="text-gray-500 font-medium">Loading component...</p>
       </div>
     </div>
   );
@@ -396,7 +396,7 @@ function App() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-claw-600 to-purple-600 shadow-lg"
+            className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-claw-500 to-claw-600 shadow-lg"
           >
             <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">

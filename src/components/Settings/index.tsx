@@ -359,7 +359,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Database size={20} className="text-purple-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Compaction & Memory</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Compaction & Memory</h3>
               <p className="text-xs text-gray-500">Manage agent memory optimization</p>
             </div>
           </div>
@@ -367,7 +367,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between p-4 bg-dark-600 rounded-lg">
               <div>
-                <p className="text-sm text-white">Enable Compaction</p>
+                <p className="text-sm text-gray-800">Enable Compaction</p>
                 <p className="text-xs text-gray-500">Compress conversation history when it gets too long</p>
               </div>
               <input
@@ -380,7 +380,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
 
             {compaction.enabled && (
               <div className="pl-4 border-l-2 border-dark-600">
-                <label className="block text-sm text-gray-400 mb-2">Token Threshold</label>
+                <label className="block text-sm text-gray-500 mb-2">Token Threshold</label>
                 <input
                   type="number"
                   value={compaction.threshold || ''}
@@ -394,7 +394,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
 
             <div className="flex items-center justify-between p-4 bg-dark-600 rounded-lg">
               <div>
-                <p className="text-sm text-white">Context Pruning</p>
+                <p className="text-sm text-gray-800">Context Pruning</p>
                 <p className="text-xs text-gray-500">Limit the number of recent messages kept in context</p>
               </div>
               <input
@@ -407,7 +407,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
 
             {compaction.context_pruning && (
               <div className="pl-4 border-l-2 border-dark-600">
-                <label className="block text-sm text-gray-400 mb-2">Max Messages</label>
+                <label className="block text-sm text-gray-500 mb-2">Max Messages</label>
                 <input
                   type="number"
                   value={compaction.max_context_messages || ''}
@@ -421,7 +421,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
 
             <div className="flex items-center justify-between p-4 bg-dark-600 rounded-lg">
               <div>
-                <p className="text-sm text-white">Local Memory Search</p>
+                <p className="text-sm text-gray-800">Local Memory Search</p>
                 <p className="text-xs text-gray-500">Enable offline embeddings mapping</p>
               </div>
               <select
@@ -443,14 +443,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Clock size={20} className="text-orange-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Workspace</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Workspace</h3>
               <p className="text-xs text-gray-500">Time and localization settings</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Timezone</label>
+              <label className="block text-sm text-gray-500 mb-2">Timezone</label>
               <select
                 value={workspace.timezone || 'Asia/Shanghai'}
                 onChange={e => setWorkspace({ ...workspace, timezone: e.target.value })}
@@ -466,7 +466,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Time Format</label>
+              <label className="block text-sm text-gray-500 mb-2">Time Format</label>
               <select
                 value={workspace.time_format || ''}
                 onChange={e => setWorkspace({ ...workspace, time_format: e.target.value || null })}
@@ -487,14 +487,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Server size={20} className="text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Gateway Settings</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Gateway Settings</h3>
               <p className="text-xs text-gray-500">Network and logging configuration</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Gateway Port</label>
+              <label className="block text-sm text-gray-500 mb-2">Gateway Port</label>
               <input
                 type="number"
                 value={gateway.port}
@@ -506,7 +506,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               </p>
             </div>
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Log Level</label>
+              <label className="block text-sm text-gray-500 mb-2">Log Level</label>
               <select
                 value={gateway.log_level}
                 onChange={e => setGateway({ ...gateway, log_level: e.target.value })}
@@ -528,14 +528,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <GitMerge size={20} className="text-indigo-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Subagent Defaults</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Subagent Defaults</h3>
               <p className="text-xs text-gray-500">Global limits for nested subagent spawning</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Max Spawn Depth</label>
+              <label className="block text-sm text-gray-500 mb-2">Max Spawn Depth</label>
               <input
                 type="number"
                 min={0}
@@ -548,7 +548,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <p className="text-xs text-gray-600 mt-1">Nesting levels</p>
             </div>
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Max Children / Agent</label>
+              <label className="block text-sm text-gray-500 mb-2">Max Children / Agent</label>
               <input
                 type="number"
                 min={0}
@@ -561,7 +561,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <p className="text-xs text-gray-600 mt-1">Per parent</p>
             </div>
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Max Concurrent</label>
+              <label className="block text-sm text-gray-500 mb-2">Max Concurrent</label>
               <input
                 type="number"
                 min={0}
@@ -578,7 +578,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
           <div className="mt-4 pt-4 border-t border-dark-600">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-sm text-white">Inline File Attachments</p>
+                <p className="text-sm text-gray-800">Inline File Attachments</p>
                 <p className="text-xs text-gray-500">Allow subagents to process files</p>
               </div>
               <input
@@ -591,7 +591,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
 
             {subagentDefaults.attachments_enabled && (
               <div className="pl-4 border-l-2 border-dark-600">
-                <label className="block text-sm text-gray-400 mb-2">Max Total Size (Bytes)</label>
+                <label className="block text-sm text-gray-500 mb-2">Max Total Size (Bytes)</label>
                 <input
                   type="number"
                   value={subagentDefaults.attachments_max_total_bytes || ''}
@@ -612,7 +612,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <FileJson size={20} className="text-slate-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Configuration Management</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Configuration Management</h3>
               <p className="text-xs text-gray-500">Backup and restore settings</p>
             </div>
           </div>
@@ -620,14 +620,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
           <div className="flex gap-4">
             <button
               onClick={handleExport}
-              className="flex-1 flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-white border border-dark-500 hover:border-dark-400"
+              className="flex-1 flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-gray-800 border border-dark-500 hover:border-dark-400"
             >
               <Download size={16} />
               Export Config
             </button>
             <button
               onClick={handleImport}
-              className="flex-1 flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-white border border-dark-500 hover:border-dark-400"
+              className="flex-1 flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-gray-800 border border-dark-500 hover:border-dark-400"
             >
               <Upload size={16} />
               Import Config
@@ -637,7 +637,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
             <button
               onClick={handleValidate}
               disabled={validating}
-              className="w-full flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-white border border-dark-500 hover:border-dark-400"
+              className="w-full flex items-center justify-center gap-2 p-3 bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors text-sm text-gray-800 border border-dark-500 hover:border-dark-400"
             >
               {validating ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle size={16} />}
               Validate Config Schema
@@ -657,14 +657,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Globe size={20} className="text-blue-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Browser Control</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Browser Control</h3>
               <p className="text-xs text-gray-500">Configure built-in browser capabilities</p>
             </div>
           </div>
 
           <div className="flex items-center justify-between p-4 bg-dark-600 rounded-lg mb-4">
             <div>
-              <p className="text-sm text-white">Enable Browser Tool</p>
+              <p className="text-sm text-gray-800">Enable Browser Tool</p>
               <p className="text-xs text-gray-500">Allow agents to browse the web</p>
             </div>
             <input
@@ -678,7 +678,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
           {browser.enabled && (
             <div className="flex items-center justify-between p-4 bg-dark-600 rounded-lg">
               <div>
-                <p className="text-sm text-white">Browser Chrome Color</p>
+                <p className="text-sm text-gray-800">Browser Chrome Color</p>
                 <p className="text-xs text-gray-500">Custom color for the browser window</p>
               </div>
               <div className="flex items-center gap-3">
@@ -688,7 +688,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
                   onChange={e => setBrowser({ ...browser, color: e.target.value })}
                   className="w-8 h-8 rounded overflow-hidden cursor-pointer border-0 p-0"
                 />
-                <span className="text-sm font-mono text-gray-400">{browser.color || 'Default'}</span>
+                <span className="text-sm font-mono text-gray-500">{browser.color || 'Default'}</span>
               </div>
             </div>
           )}
@@ -701,14 +701,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Server size={20} className="text-red-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Tools & Security</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Tools & Security</h3>
               <p className="text-xs text-gray-500">Manage tool access profiles and settings</p>
             </div>
           </div>
 
           <div className="space-y-6">
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Security Profile</label>
+              <label className="block text-sm text-gray-500 mb-2">Security Profile</label>
               <select
                 value={toolsProfile}
                 onChange={e => setToolsProfile(e.target.value)}
@@ -723,10 +723,10 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
             </div>
 
             <div className="pt-4 border-t border-dark-600">
-              <h4 className="text-sm font-medium text-white mb-4">Native PDF Support</h4>
+              <h4 className="text-sm font-medium text-gray-800 mb-4">Native PDF Support</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">Max Pages</label>
+                  <label className="block text-sm text-gray-500 mb-2">Max Pages</label>
                   <input
                     type="number"
                     value={pdfConfig.max_pages || ''}
@@ -736,7 +736,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">Max Size (MB)</label>
+                  <label className="block text-sm text-gray-500 mb-2">Max Size (MB)</label>
                   <input
                     type="number"
                     value={pdfConfig.max_bytes_mb || ''}
@@ -757,14 +757,14 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <Globe size={20} className="text-orange-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-white">Web Search</h3>
+              <h3 className="text-lg font-semibold text-gray-800">Web Search</h3>
               <p className="text-xs text-gray-500">Configure search engine APIs</p>
             </div>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-2">Brave Search API Key</label>
+              <label className="block text-sm text-gray-500 mb-2">Brave Search API Key</label>
               <input
                 type="password"
                 value={webConfig.brave_api_key || ''}
@@ -784,8 +784,8 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <ArrowUpCircle size={20} className="text-emerald-400" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white">Manager Update</h3>
-              <p className="text-xs text-gray-500">Keep OpenClaw Manager up to date</p>
+              <h3 className="text-lg font-semibold text-gray-800">Desktop Update</h3>
+              <p className="text-xs text-gray-500">Keep OpenClaw Desktop up to date</p>
             </div>
             <span className="text-xs font-mono text-gray-500 bg-dark-600 px-2 py-1 rounded">v{appVersion}</span>
           </div>
@@ -804,7 +804,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
                   <RefreshCw size={18} className="text-emerald-400" />
                 )}
                 <div className="flex-1">
-                  <p className="text-sm text-white">{managerChecking ? 'Checking...' : 'Check for Updates'}</p>
+                  <p className="text-sm text-gray-800">{managerChecking ? 'Checking...' : 'Check for Updates'}</p>
                   <p className="text-xs text-gray-500">Check GitHub for the latest Manager version</p>
                 </div>
               </button>
@@ -823,10 +823,10 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
               <div className="p-4 bg-dark-600 rounded-lg space-y-3">
                 <div className="flex items-center gap-2">
                   <Download size={16} className="text-emerald-400" />
-                  <span className="text-sm font-medium text-white">Update available: v{managerUpdateVersion}</span>
+                  <span className="text-sm font-medium text-gray-800">Update available: v{managerUpdateVersion}</span>
                 </div>
                 {managerUpdateBody && (
-                  <p className="text-xs text-gray-400 whitespace-pre-line max-h-32 overflow-y-auto">{managerUpdateBody}</p>
+                  <p className="text-xs text-gray-500 whitespace-pre-line max-h-32 overflow-y-auto">{managerUpdateBody}</p>
                 )}
 
                 {/* Download progress */}
@@ -845,7 +845,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
                 {!managerDownloading && (
                   <button
                     onClick={downloadManagerUpdate}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-claw-600 hover:from-emerald-500 hover:to-claw-500 text-white text-sm font-medium rounded-lg transition-all"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-claw-600 hover:from-emerald-500 hover:to-claw-500 text-gray-800 text-sm font-medium rounded-lg transition-all"
                   >
                     <Download size={16} />
                     Download & Install
@@ -863,7 +863,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
                 </div>
                 <button
                   onClick={restartApp}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium rounded-lg transition-colors"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-gray-800 text-sm font-medium rounded-lg transition-colors"
                 >
                   <RefreshCw size={16} />
                   Restart Now
@@ -887,7 +887,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
             <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center">
               <AlertTriangle size={20} className="text-red-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white">Danger Zone</h3>
+            <h3 className="text-lg font-semibold text-gray-800">Danger Zone</h3>
           </div>
           <button
             onClick={() => setShowUninstallConfirm(true)}
@@ -906,7 +906,7 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
             onClick={handleSave}
             disabled={saving || saveSuccess}
             className={`shadow-xl flex items-center gap-2 px-6 py-3 rounded-full text-base font-medium transition-all ${saveSuccess
-              ? 'bg-green-600 text-white hover:bg-green-700'
+              ? 'bg-green-600 text-gray-800 hover:bg-green-700'
               : 'btn-primary'
               }`}
           >
@@ -927,13 +927,13 @@ export function Settings({ onEnvironmentChange }: SettingsProps) {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-dark-700 rounded-2xl p-6 border border-dark-500 max-w-md w-full shadow-2xl">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-white">Uninstall OpenClaw</h3>
-              <button onClick={() => setShowUninstallConfirm(false)}><X size={20} className="text-gray-400 hover:text-white" /></button>
+              <h3 className="text-lg font-semibold text-gray-800">Uninstall OpenClaw</h3>
+              <button onClick={() => setShowUninstallConfirm(false)}><X size={20} className="text-gray-500 hover:text-gray-900" /></button>
             </div>
 
             {!uninstallResult ? (
               <>
-                <p className="text-gray-300 mb-4">Are you sure? This will <span className="text-red-400 font-semibold">permanently delete</span> the entire <code className="bg-dark-600 px-1.5 py-0.5 rounded text-red-300 text-xs">~/.openclaw</code> folder (all configs, agents, and data) and uninstall the OpenClaw CLI.</p>
+                <p className="text-gray-600 mb-4">Are you sure? This will <span className="text-red-400 font-semibold">permanently delete</span> the entire <code className="bg-dark-600 px-1.5 py-0.5 rounded text-red-300 text-xs">~/.openclaw</code> folder (all configs, agents, and data) and uninstall the OpenClaw CLI.</p>
                 <p className="text-yellow-400/80 text-xs mb-6 flex items-center gap-2"><AlertTriangle size={14} /> This action cannot be undone.</p>
                 <div className="flex gap-3">
                   <button onClick={() => setShowUninstallConfirm(false)} className="flex-1 btn-secondary">Cancel</button>

@@ -410,7 +410,7 @@ pub fn run_openclaw(args: &[&str]) -> Result<String, String> {
 }
 
 /// Default Gateway Token (fallback only)
-pub const DEFAULT_GATEWAY_TOKEN: &str = "openclaw-manager-local-token";
+pub const DEFAULT_GATEWAY_TOKEN: &str = "openclaw-desktop-local-token";
 
 /// Read the actual gateway auth token from openclaw.json config.
 /// If no token exists (fresh install), generates one and saves it to config.

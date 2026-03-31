@@ -27,9 +27,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: OpenClaw Manager ${{ github.ref_name }}
+          name: OpenClaw Desktop ${{ github.ref_name }}
           body: |
-            ## 🦞 OpenClaw Manager ${{ github.ref_name }}
+            ## 🦞 OpenClaw Desktop ${{ github.ref_name }}
 
             ### Downloads
 

@@ -289,15 +289,15 @@ export function MCP() {
         <div className="h-full overflow-y-auto scroll-container pr-2">
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Model Context Protocol</h2>
-                    <p className="text-gray-400">Manage MCP servers to extend Agent capabilities</p>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Model Context Protocol</h2>
+                    <p className="text-gray-500">Manage MCP servers to extend Agent capabilities</p>
                 </div>
                 {!editingId && (
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => setShowInstallDialog(true)}
                             disabled={loading || installing}
-                            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-claw-500 hover:bg-claw-600 text-white rounded-lg transition-colors"
                         >
                             <GitBranch size={18} />
                             <span>Install from Git</span>
@@ -353,7 +353,7 @@ export function MCP() {
                         <button
                             onClick={handleUninstallMcporter}
                             disabled={installingMcporter}
-                            className="p-2 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-colors"
+                            className="p-2 hover:bg-red-500/20 text-gray-500 hover:text-red-400 rounded-lg transition-colors"
                             title="Uninstall mcporter"
                         >
                             {installingMcporter ? (
@@ -419,15 +419,15 @@ export function MCP() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="bg-dark-700 rounded-2xl border border-purple-500/30 p-6 mb-6"
+                        className="bg-dark-700 rounded-2xl border border-claw-500/30 p-6 mb-6"
                     >
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                                <Download size={20} className="text-purple-400" />
+                            <div className="w-10 h-10 rounded-lg bg-claw-500/10 flex items-center justify-center">
+                                <Download size={20} className="text-claw-500" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold text-white">Install MCP Server</h3>
-                                <p className="text-sm text-gray-400">Install from a GitHub repository URL</p>
+                                <h3 className="text-lg font-semibold text-gray-800">Install MCP Server</h3>
+                                <p className="text-sm text-gray-500">Install from a GitHub repository URL</p>
                             </div>
                         </div>
 
@@ -439,8 +439,8 @@ export function MCP() {
                                 className={clsx(
                                     'flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm transition-all',
                                     installMode === 'plugin'
-                                        ? 'bg-purple-600 text-white'
-                                        : 'text-gray-400 hover:text-white'
+                                        ? 'bg-claw-500 text-white'
+                                        : 'text-gray-500 hover:text-gray-900'
                                 )}
                             >
                                 <Plug size={15} />
@@ -452,13 +452,13 @@ export function MCP() {
                                 className={clsx(
                                     'flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm transition-all',
                                     installMode === 'source'
-                                        ? 'bg-dark-600 text-white'
-                                        : 'text-gray-400 hover:text-white'
+                                        ? 'bg-dark-600 text-gray-800'
+                                        : 'text-gray-500 hover:text-gray-900'
                                 )}
                             >
                                 <GitBranch size={15} />
                                 <span>From Source</span>
-                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-dark-500 text-gray-200">Recommended</span>
+                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-dark-500 text-gray-600">Recommended</span>
                             </button>
                         </div>
 
@@ -470,7 +470,7 @@ export function MCP() {
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Repository URL</label>
+                                <label className="block text-sm font-medium text-gray-500 mb-2">Repository URL</label>
                                 <div className="relative">
                                     <GitBranch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                     <input
@@ -479,7 +479,7 @@ export function MCP() {
                                         onChange={(e) => setGitUrl(e.target.value)}
                                         placeholder="https://github.com/owner/mcp-server-name"
                                         disabled={installing}
-                                        className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none font-mono text-sm disabled:opacity-50"
+                                        className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-gray-800 focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm disabled:opacity-50"
                                         onKeyDown={(e) => { if (e.key === 'Enter' && !installing) handleInstall(); }}
                                     />
                                 </div>
@@ -492,15 +492,15 @@ export function MCP() {
                                     className="bg-dark-800 rounded-xl p-4 border border-dark-600"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <Loader2 size={20} className="text-purple-400 animate-spin" />
+                                        <Loader2 size={20} className="text-claw-500 animate-spin" />
                                         <div>
-                                            <p className="text-sm text-white font-medium">Installing...</p>
-                                            <p className="text-xs text-gray-400">{installProgress}</p>
+                                            <p className="text-sm text-gray-800 font-medium">Installing...</p>
+                                            <p className="text-xs text-gray-500">{installProgress}</p>
                                         </div>
                                     </div>
                                     <div className="mt-3 h-1 bg-dark-600 rounded-full overflow-hidden">
                                         <motion.div
-                                            className="h-full bg-gradient-to-r from-purple-500 to-claw-500 rounded-full"
+                                            className="h-full bg-gradient-to-r from-claw-50 to-claw-100 rounded-full"
                                             initial={{ width: '0%' }}
                                             animate={{ width: '90%' }}
                                             transition={{ duration: 30, ease: 'linear' }}
@@ -513,14 +513,14 @@ export function MCP() {
                                 <button
                                     onClick={() => { setShowInstallDialog(false); setGitUrl(''); setInstallProgress(''); }}
                                     disabled={installing}
-                                    className="px-4 py-2 text-gray-400 hover:text-white hover:bg-dark-600 rounded-lg transition-colors disabled:opacity-50"
+                                    className="px-4 py-2 text-gray-500 hover:text-gray-900 hover:bg-dark-600 rounded-lg transition-colors disabled:opacity-50"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={handleInstall}
                                     disabled={installing || !gitUrl.trim()}
-                                    className="flex items-center gap-2 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors disabled:opacity-50"
+                                    className="flex items-center gap-2 px-6 py-2 bg-claw-500 hover:bg-claw-600 text-white rounded-lg transition-colors disabled:opacity-50"
                                 >
                                     {installing ? (
                                         <>
@@ -550,13 +550,13 @@ export function MCP() {
                         className="bg-dark-700 rounded-2xl border border-dark-500 p-6"
                     >
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-semibold text-white">
+                            <h3 className="text-lg font-semibold text-gray-800">
                                 {isNew ? 'Add New MCP Server' : `Edit ${formData.name}`}
                             </h3>
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={handleCancel}
-                                    className="px-4 py-2 text-gray-400 hover:text-white hover:bg-dark-600 rounded-lg transition-colors"
+                                    className="px-4 py-2 text-gray-500 hover:text-gray-900 hover:bg-dark-600 rounded-lg transition-colors"
                                 >
                                     Cancel
                                 </button>
@@ -573,19 +573,19 @@ export function MCP() {
                         <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">Server Name</label>
+                                    <label className="block text-sm font-medium text-gray-500 mb-2">Server Name</label>
                                     <input
                                         type="text"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         disabled={!isNew}
                                         placeholder="e.g. filesystem-server"
-                                        className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-2.5 text-white focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-2.5 text-gray-800 focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                                     />
                                     <p className="mt-1 text-xs text-gray-500">Unique identifier for this server</p>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">Status</label>
+                                    <label className="block text-sm font-medium text-gray-500 mb-2">Status</label>
                                     <div className="flex items-center gap-3 py-2.5">
                                         <label className="flex items-center gap-2 cursor-pointer">
                                             <input
@@ -594,7 +594,7 @@ export function MCP() {
                                                 onChange={(e) => setFormData({ ...formData, enabled: e.target.checked })}
                                                 className="w-5 h-5 rounded border-dark-500 bg-dark-600 text-claw-500 focus:ring-offset-dark-700"
                                             />
-                                            <span className="text-white">Enabled</span>
+                                            <span className="text-gray-800">Enabled</span>
                                         </label>
                                     </div>
                                 </div>
@@ -602,7 +602,7 @@ export function MCP() {
 
                             {/* Server Type Toggle */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Server Type</label>
+                                <label className="block text-sm font-medium text-gray-500 mb-2">Server Type</label>
                                 <div className="flex items-center gap-1 bg-dark-800 rounded-lg p-1">
                                     <button
                                         onClick={() => setFormData({ ...formData, serverType: 'local' })}
@@ -610,7 +610,7 @@ export function MCP() {
                                             'flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm transition-all',
                                             formData.serverType === 'local'
                                                 ? 'bg-claw-600 text-white'
-                                                : 'text-gray-400 hover:text-white'
+                                                : 'text-gray-500 hover:text-gray-900'
                                         )}
                                     >
                                         <Terminal size={15} />
@@ -622,7 +622,7 @@ export function MCP() {
                                             'flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm transition-all',
                                             formData.serverType === 'remote'
                                                 ? 'bg-blue-600 text-white'
-                                                : 'text-gray-400 hover:text-white'
+                                                : 'text-gray-500 hover:text-gray-900'
                                         )}
                                     >
                                         <Globe size={15} />
@@ -633,7 +633,7 @@ export function MCP() {
 
                             {formData.serverType === 'remote' ? (
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-2">Server URL</label>
+                                    <label className="block text-sm font-medium text-gray-500 mb-2">Server URL</label>
                                     <div className="relative">
                                         <Globe className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                         <input
@@ -641,7 +641,7 @@ export function MCP() {
                                             value={formData.url}
                                             onChange={(e) => setFormData({ ...formData, url: e.target.value })}
                                             placeholder="https://mcp.example.com/mcp"
-                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
                                         />
                                     </div>
                                     <p className="mt-1 text-xs text-gray-500">HTTP/HTTPS endpoint for the remote MCP server</p>
@@ -649,7 +649,7 @@ export function MCP() {
                             ) : (
                                 <>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-2">Command</label>
+                                        <label className="block text-sm font-medium text-gray-500 mb-2">Command</label>
                                         <div className="relative">
                                             <Terminal className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                             <input
@@ -657,30 +657,30 @@ export function MCP() {
                                                 value={formData.command}
                                                 onChange={(e) => setFormData({ ...formData, command: e.target.value })}
                                                 placeholder="e.g. node, python, or absolute path to executable"
-                                                className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-white focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm"
+                                                className="w-full bg-dark-800 border border-dark-600 rounded-xl pl-10 pr-4 py-2.5 text-gray-800 focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm"
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-2">Arguments</label>
+                                        <label className="block text-sm font-medium text-gray-500 mb-2">Arguments</label>
                                         <input
                                             type="text"
                                             value={formData.args}
                                             onChange={(e) => setFormData({ ...formData, args: e.target.value })}
                                             placeholder="e.g. index.js --port 3000 (space separated)"
-                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-2.5 text-white focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm"
+                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-2.5 text-gray-800 focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm"
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-2">Environment Variables</label>
+                                        <label className="block text-sm font-medium text-gray-500 mb-2">Environment Variables</label>
                                         <textarea
                                             value={formData.env}
                                             onChange={(e) => setFormData({ ...formData, env: e.target.value })}
                                             placeholder={'KEY=VALUE\nAPI_TOKEN=xyz'}
                                             rows={5}
-                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm resize-none"
+                                            className="w-full bg-dark-800 border border-dark-600 rounded-xl px-4 py-3 text-gray-800 focus:ring-2 focus:ring-claw-500 focus:border-transparent outline-none font-mono text-sm resize-none"
                                         />
                                     </div>
                                 </>
@@ -702,7 +702,7 @@ export function MCP() {
                                 <p className="text-sm mb-6">Add a server manually or install from GitHub</p>
                                 <button
                                     onClick={() => setShowInstallDialog(true)}
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-claw-500 hover:bg-claw-600 text-white rounded-lg transition-colors"
                                 >
                                     <GitBranch size={18} />
                                     <span>Install from GitHub</span>
@@ -724,7 +724,7 @@ export function MCP() {
                                                 <Blocks size={20} />
                                             </div>
                                             <div>
-                                                <h3 className="font-semibold text-white">{id}</h3>
+                                                <h3 className="font-semibold text-gray-800">{id}</h3>
                                                 <div className="flex items-center gap-2">
                                                     <span className={clsx(
                                                         "w-2 h-2 rounded-full",
@@ -744,7 +744,7 @@ export function MCP() {
                                                     "p-2 rounded-lg transition-colors",
                                                     testingId === id
                                                         ? "bg-yellow-500/20 text-yellow-400"
-                                                        : "hover:bg-emerald-500/20 text-gray-400 hover:text-emerald-400"
+                                                        : "hover:bg-emerald-500/20 text-gray-500 hover:text-emerald-400"
                                                 )}
                                                 title="Test server"
                                             >
@@ -752,14 +752,14 @@ export function MCP() {
                                             </button>
                                             <button
                                                 onClick={() => handleEdit(id)}
-                                                className="p-2 hover:bg-dark-600 text-gray-400 hover:text-white rounded-lg transition-colors"
+                                                className="p-2 hover:bg-dark-600 text-gray-500 hover:text-gray-900 rounded-lg transition-colors"
                                                 title="Edit"
                                             >
                                                 <Edit2 size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleUninstall(id)}
-                                                className="p-2 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded-lg transition-colors"
+                                                className="p-2 hover:bg-red-500/20 text-gray-500 hover:text-red-400 rounded-lg transition-colors"
                                                 title="Uninstall"
                                             >
                                                 <Trash2 size={16} />
@@ -768,7 +768,7 @@ export function MCP() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <div className="bg-dark-800/50 rounded-lg px-3 py-2 border border-dark-600/50 font-mono text-xs text-gray-400 truncate">
+                                        <div className="bg-dark-800/50 rounded-lg px-3 py-2 border border-dark-600/50 font-mono text-xs text-gray-500 truncate">
                                             {config.url ? (
                                                 <><Globe size={12} className="inline mr-1.5 text-blue-400" />{config.url}</>
                                             ) : (
@@ -778,7 +778,7 @@ export function MCP() {
                                         {Object.keys(config.env || {}).length > 0 && (
                                             <div className="flex flex-wrap gap-2">
                                                 {Object.keys(config.env || {}).slice(0, 3).map(key => (
-                                                    <span key={key} className="px-2 py-0.5 rounded text-[10px] bg-dark-600 text-gray-400 border border-dark-500">
+                                                    <span key={key} className="px-2 py-0.5 rounded text-[10px] bg-dark-600 text-gray-500 border border-dark-500">
                                                         {key}
                                                     </span>
                                                 ))}

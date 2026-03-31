@@ -15,9 +15,9 @@ html, body, #root {
 }
 
 body {
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-  background-color: #0a0a0b;
-  color: #e5e5e5;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fdfcfb;
+  color: #1a1614;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,8 +33,8 @@ body {
 
 /* Custom selection style */
 ::selection {
-  background-color: rgba(249, 77, 58, 0.3);
-  color: white;
+  background-color: rgba(232, 39, 44, 0.15);
+  color: #1a1614;
 }
 
 /* Input focus style */
@@ -80,10 +80,10 @@ button:disabled {
 
   @keyframes glowPulse {
     0%, 100% {
-      box-shadow: 0 0 5px rgba(249, 77, 58, 0.4);
+      box-shadow: 0 0 5px rgba(232, 39, 44, 0.1);
     }
     50% {
-      box-shadow: 0 0 20px rgba(249, 77, 58, 0.6);
+      box-shadow: 0 0 15px rgba(232, 39, 44, 0.2);
     }
   }
 }
@@ -96,31 +96,39 @@ button:disabled {
 
 /* Code block style */
 .code-block {
-  font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
-  background: #1a1a1d;
-  border: 1px solid #2e2e33;
+  font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  background: #faf8f6;
+  border: 1px solid #e6e2de;
   border-radius: 8px;
   padding: 12px 16px;
   font-size: 13px;
   line-height: 1.5;
   overflow-x: auto;
+  color: #1a1614;
 }
 
 /* Card hover effect */
 .card-hover {
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(26, 22, 20, 0.08), 0 2px 6px rgba(26, 22, 20, 0.04);
 }
 
-/* Glass effect */
+/* Glass effect — light frosted glass */
 .glass {
-  background: rgba(26, 26, 29, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* Glass card — used for main content cards */
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #e6e2de;
+  box-shadow: 0 1px 3px rgba(26, 22, 20, 0.06), 0 2px 8px rgba(26, 22, 20, 0.04);
 }
 
 /* Status indicator */
@@ -131,8 +139,8 @@ button:disabled {
 }
 
 .status-dot.running {
-  background: #4ade80;
-  box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
   animation: pulse 2s infinite;
 }
 
@@ -141,7 +149,7 @@ button:disabled {
 }
 
 .status-dot.warning {
-  background: #fbbf24;
+  background: #f59e0b;
 }
 
 @keyframes pulse {
@@ -153,44 +161,60 @@ button:disabled {
   }
 }
 
-/* Gradient background */
+/* Gradient background — warm radial */
 .bg-gradient-radial {
-  background: radial-gradient(ellipse at top, rgba(249, 77, 58, 0.1) 0%, transparent 50%);
+  background: radial-gradient(1400px 700px at 85% -15%, rgba(232, 39, 44, 0.06) 0%, transparent 50%);
 }
 
 /* Icon button */
 .icon-button {
   @apply p-2 rounded-lg transition-colors;
-  @apply hover:bg-dark-500 active:bg-dark-400;
+  @apply hover:bg-dark-600/50 active:bg-dark-600;
 }
 
 /* Input base style */
 .input-base {
   @apply w-full px-4 py-3 rounded-lg;
-  @apply bg-dark-700 border border-dark-500;
-  @apply text-white placeholder-gray-500;
-  @apply focus:border-claw-500 focus:ring-1 focus:ring-claw-500/50;
+  @apply bg-white border border-dark-600;
+  @apply text-gray-800 placeholder-gray-400;
+  @apply focus:border-claw-500 focus:ring-1 focus:ring-claw-500/30;
   @apply transition-all duration-200;
 }
 
 /* Button base styles */
 .btn-primary {
-  @apply px-6 py-3 rounded-lg font-medium;
+  @apply px-6 py-3 rounded-full font-semibold;
   @apply bg-claw-500 text-white;
   @apply hover:bg-claw-600 active:bg-claw-700;
-  @apply transition-all duration-200;
+  @apply transition-all duration-300;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 rounded-lg font-medium;
-  @apply bg-dark-600 text-white border border-dark-400;
-  @apply hover:bg-dark-500 active:bg-dark-400;
-  @apply transition-all duration-200;
+  @apply px-6 py-3 rounded-full font-semibold;
+  @apply bg-transparent text-claw-500 border-2 border-claw-500;
+  @apply hover:bg-claw-500 hover:text-white active:bg-claw-600;
+  @apply transition-all duration-300;
 }
 
 .btn-ghost {
   @apply px-4 py-2 rounded-lg font-medium;
-  @apply text-gray-400 hover:text-white hover:bg-dark-600;
+  @apply text-gray-500 hover:text-gray-800 hover:bg-dark-600/50;
   @apply transition-all duration-200;
+}
+
+/* Custom scrollbar — light theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f0ed;
+}
+::-webkit-scrollbar-thumb {
+  background: #cec8c2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a69e96;
 }

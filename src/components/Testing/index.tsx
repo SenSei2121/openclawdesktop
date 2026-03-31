@@ -57,11 +57,11 @@ export function Testing() {
         <div className="bg-dark-700 rounded-2xl p-6 border border-dark-500">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                <Stethoscope size={20} className="text-purple-400" />
+              <div className="w-10 h-10 rounded-xl bg-claw-500/10 flex items-center justify-center">
+                <Stethoscope size={20} className="text-claw-500" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">System Diagnostics</h3>
+                <h3 className="text-lg font-semibold text-gray-800">System Diagnostics</h3>
                 <p className="text-xs text-gray-500">
                   Check OpenClaw installation and configuration status
                 </p>
@@ -126,7 +126,7 @@ export function Testing() {
                     >
                       {result.name}
                     </p>
-                    <p className="text-xs text-gray-400 mt-1 whitespace-pre-wrap break-words">{result.message}</p>
+                    <p className="text-xs text-gray-500 mt-1 whitespace-pre-wrap break-words">{result.message}</p>
                     {result.suggestion && (
                       <p className="text-xs text-amber-400 mt-1">
                         💡 {result.suggestion}
@@ -149,7 +149,7 @@ export function Testing() {
 
         {/* Instructions */}
         <div className="bg-dark-700/50 rounded-xl p-4 border border-dark-500">
-          <h4 className="text-sm font-medium text-gray-400 mb-2">Diagnostic Instructions</h4>
+          <h4 className="text-sm font-medium text-gray-500 mb-2">Diagnostic Instructions</h4>
           <ul className="text-sm text-gray-500 space-y-1">
             <li>• System diagnostics checks Node.js, OpenClaw installation, config files and other status</li>
             <li>• For AI connection testing, go to <span className="text-claw-400">AI Configuration</span> page</li>
