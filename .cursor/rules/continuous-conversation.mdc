@@ -1,0 +1,33 @@
+---
+description: Keep AI conversation loop open until explicit user exit
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Continuous Conversation
+
+Every response MUST end with an `AskQuestion` tool call.
+The ONLY exception: user explicitly asks to exit or selects "Exit conversation".
+
+## AskQuestion format
+
+```
+AskQuestion({
+  "questions": [{
+    "id": "next",
+    "prompt": "<what you did>. Work is active — what should I adjust next?",
+    "options": [
+      {"id": "Continue", "label": "Continue"},
+      {"id": "Exit conversation", "label": "Exit conversation"},
+      {"id": "other", "label": "other"}
+    ]
+  }]
+})
+```
+
+## Rules
+
+1. EVERY response ends with `AskQuestion`. No text-only responses (zero tool calls).
+2. "Awaiting reply" = active work. Never frame as done/complete/finished/resolved.
+3. "Continue": keep working. "Exit conversation": brief farewell (only exception to rule 1). "other"/new text: execute, then `AskQuestion`.
+4. Use ONLY `AskQuestion` — no other MCP feedback/continuation tools.
